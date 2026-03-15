@@ -7,594 +7,208 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@300;400;600&display=swap');
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --gold:#D4AF37;--gold-bright:#FFD700;--gold-dim:#8B7536;--cream:#F5E6C8;
+  --blood:#8B0000;--blood-bright:#CC0000;
+  --jet:#0A0A0A;--smoke:#1A1A1A;--steel:#2A2A2A;--mink:#3A3A3A;--ice:#E0E0E0;
+  --green:#2D6B3F;--green-bright:#4CAF50;
+  --vpn:#6A0DAD;--vpn-glow:#9B30FF;
+}
+body{background:var(--jet);color:var(--ice);font-family:'Source Sans 3',sans-serif;overflow-x:hidden;min-height:100vh}
 
-:root {
-  --gold: #D4AF37;
-  --gold-bright: #FFD700;
-  --gold-dim: #8B7536;
-  --cream: #F5E6C8;
-  --blood: #8B0000;
-  --blood-bright: #CC0000;
-  --jet: #0A0A0A;
-  --smoke: #1A1A1A;
-  --steel: #2A2A2A;
-  --mink: #3A3A3A;
-  --ice: #E0E0E0;
-  --green-money: #2D6B3F;
-  --green-bright: #4CAF50;
-  --vpn-purple: #6A0DAD;
-  --vpn-glow: #9B30FF;
-}
+/* HERO */
+.hero{position:relative;padding:36px 20px 26px;text-align:center;background:linear-gradient(180deg,#000 0%,var(--jet) 100%);border-bottom:2px solid var(--gold-dim);overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0px,transparent 3px,rgba(212,175,55,0.03) 3px,rgba(212,175,55,0.03) 4px);pointer-events:none}
+.hero-badge{display:inline-block;padding:4px 20px;background:var(--gold);color:var(--jet);font-family:'Oswald',sans-serif;font-size:11px;font-weight:600;letter-spacing:4px;text-transform:uppercase;margin-bottom:10px}
+.hero h1{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(2rem,5vw,3.5rem);color:var(--gold);text-shadow:0 0 40px rgba(212,175,55,0.3);line-height:1.1}
+.hero h1 span{display:block;font-family:'Oswald',sans-serif;font-weight:300;font-size:clamp(0.8rem,1.8vw,1.1rem);color:var(--cream);letter-spacing:5px;text-transform:uppercase;margin-top:8px}
+.hero-quote{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(0.8rem,1.4vw,1rem);color:var(--gold-dim);margin-top:8px;opacity:0.8}
 
-body {
-  background: var(--jet);
-  color: var(--ice);
-  font-family: 'Source Sans 3', sans-serif;
-  overflow-x: hidden;
-  min-height: 100vh;
-}
+/* LEGEND */
+.legend-bar{display:flex;justify-content:center;gap:16px;padding:12px 20px;background:var(--smoke);border-bottom:1px solid var(--mink);flex-wrap:wrap}
+.legend-item{display:flex;align-items:center;gap:7px;font-family:'Oswald',sans-serif;font-size:11px;font-weight:400;letter-spacing:1.5px;text-transform:uppercase;color:var(--ice)}
+.legend-dot{width:13px;height:13px;border-radius:2px}
+.legend-dot.approved{background:var(--green);border:1px solid var(--green-bright)}
+.legend-dot.retail{background:#5C4D1E;border:1px solid var(--gold)}
+.legend-dot.blocked{background:var(--blood);border:1px solid var(--blood-bright)}
+.legend-dot.vpn{background:var(--vpn);border:1px solid var(--vpn-glow)}
 
-/* ====== HERO / TITLE BANNER ====== */
-.hero {
-  position: relative;
-  padding: 40px 20px 30px;
-  text-align: center;
-  background: linear-gradient(180deg, #000 0%, var(--jet) 100%);
-  border-bottom: 2px solid var(--gold-dim);
-  overflow: hidden;
-}
-.hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: repeating-linear-gradient(
-    90deg,
-    transparent 0px,
-    transparent 3px,
-    rgba(212,175,55,0.03) 3px,
-    rgba(212,175,55,0.03) 4px
-  );
-  pointer-events: none;
-}
-.hero-badge {
-  display: inline-block;
-  padding: 4px 20px;
-  background: var(--gold);
-  color: var(--jet);
-  font-family: 'Oswald', sans-serif;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  margin-bottom: 12px;
-}
-.hero h1 {
-  font-family: 'Playfair Display', serif;
-  font-weight: 900;
-  font-size: clamp(2.2rem, 5vw, 3.8rem);
-  color: var(--gold);
-  text-shadow: 0 0 40px rgba(212,175,55,0.3);
-  line-height: 1.1;
-  margin-bottom: 6px;
-}
-.hero h1 span {
-  display: block;
-  font-family: 'Oswald', sans-serif;
-  font-weight: 300;
-  font-size: clamp(0.9rem, 2vw, 1.2rem);
-  color: var(--cream);
-  letter-spacing: 6px;
-  text-transform: uppercase;
-  margin-top: 8px;
-}
-.hero-quote {
-  font-family: 'Playfair Display', serif;
-  font-style: italic;
-  font-size: clamp(0.85rem, 1.5vw, 1.05rem);
-  color: var(--gold-dim);
-  margin-top: 10px;
-  opacity: 0.8;
-}
+/* STATS */
+.stats-row{display:flex;justify-content:center;gap:28px;padding:14px 20px;background:linear-gradient(90deg,var(--jet) 0%,var(--smoke) 50%,var(--jet) 100%);flex-wrap:wrap}
+.stat-box{text-align:center}
+.stat-num{font-family:'Playfair Display',serif;font-weight:900;font-size:1.6rem;line-height:1}
+.stat-num.green{color:var(--green-bright)}.stat-num.gold{color:var(--gold)}.stat-num.red{color:var(--blood-bright)}.stat-num.purple{color:var(--vpn-glow)}
+.stat-label{font-family:'Oswald',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#888;margin-top:2px}
 
-/* ====== LEGEND BAR ====== */
-.legend-bar {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  padding: 14px 20px;
-  background: var(--smoke);
-  border-bottom: 1px solid var(--mink);
-  flex-wrap: wrap;
-}
-.legend-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-family: 'Oswald', sans-serif;
-  font-size: 12px;
-  font-weight: 400;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: var(--ice);
-}
-.legend-dot {
-  width: 14px;
-  height: 14px;
-  border-radius: 2px;
-}
-.legend-dot.approved { background: var(--green-money); border: 1px solid var(--green-bright); }
-.legend-dot.retail-only { background: #5C4D1E; border: 1px solid var(--gold); }
-.legend-dot.blocked { background: var(--blood); border: 1px solid var(--blood-bright); }
-.legend-dot.vpn { background: var(--vpn-purple); border: 1px solid var(--vpn-glow); }
+/* TOGGLE */
+.mode-toggle{display:flex;justify-content:center;gap:0;padding:14px 20px 8px}
+.mode-btn{padding:10px 24px;font-family:'Oswald',sans-serif;font-size:13px;font-weight:500;letter-spacing:2px;text-transform:uppercase;border:1px solid var(--mink);background:var(--smoke);color:#888;cursor:pointer;transition:all 0.3s}
+.mode-btn:first-child{border-radius:4px 0 0 4px}
+.mode-btn:last-child{border-radius:0 4px 4px 0}
+.mode-btn.active{background:var(--gold);color:var(--jet);border-color:var(--gold)}
+.mode-btn.active.vpn-on{background:var(--vpn);color:#fff;border-color:var(--vpn-glow)}
+@keyframes vpnPulse{0%,100%{box-shadow:0 0 0 0 rgba(155,48,255,0.4)}50%{box-shadow:0 0 0 6px rgba(155,48,255,0)}}
+.mode-btn.vpn-pulse{animation:vpnPulse 2s infinite}
 
-/* ====== STATS ROW ====== */
-.stats-row {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  padding: 16px 20px;
-  background: linear-gradient(90deg, var(--jet) 0%, var(--smoke) 50%, var(--jet) 100%);
-  flex-wrap: wrap;
-}
-.stat-box {
-  text-align: center;
-}
-.stat-num {
-  font-family: 'Playfair Display', serif;
-  font-weight: 900;
-  font-size: 1.8rem;
-  line-height: 1;
-}
-.stat-num.green { color: var(--green-bright); }
-.stat-num.gold { color: var(--gold); }
-.stat-num.red { color: var(--blood-bright); }
-.stat-num.purple { color: var(--vpn-glow); }
-.stat-label {
-  font-family: 'Oswald', sans-serif;
-  font-size: 10px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: #888;
-  margin-top: 2px;
-}
+/* MAP */
+.map-wrap{position:relative;max-width:1100px;margin:8px auto 0;padding:0 10px}
+.map-svg-container svg{width:100%;height:auto;display:block}
+.state-path{stroke:var(--jet);stroke-width:0.8;cursor:pointer;transition:fill 0.2s,filter 0.2s,stroke 0.2s}
+.state-path:hover{filter:brightness(1.4);stroke:var(--gold);stroke-width:1.5}
+.state-path.approved{fill:var(--green)}.state-path.retail-only{fill:#5C4D1E}.state-path.blocked{fill:var(--blood)}.state-path.vpn-active{fill:var(--vpn)}
+.state-label{font-family:'Oswald',sans-serif;font-size:7px;fill:#fff;text-anchor:middle;pointer-events:none;font-weight:500;letter-spacing:0.5px;paint-order:stroke;stroke:rgba(0,0,0,0.5);stroke-width:2px}
 
-/* ====== TOGGLE ====== */
-.mode-toggle {
-  display: flex;
-  justify-content: center;
-  gap: 0;
-  padding: 16px 20px 10px;
-}
-.mode-btn {
-  padding: 10px 24px;
-  font-family: 'Oswald', sans-serif;
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  border: 1px solid var(--mink);
-  background: var(--smoke);
-  color: #888;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-.mode-btn:first-child { border-radius: 4px 0 0 4px; }
-.mode-btn:last-child { border-radius: 0 4px 4px 0; }
-.mode-btn.active {
-  background: var(--gold);
-  color: var(--jet);
-  border-color: var(--gold);
-}
+/* PANEL */
+.panel-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:100;backdrop-filter:blur(4px)}
+.panel-overlay.open{display:flex;justify-content:center;align-items:flex-start;padding-top:5vh}
+.panel{background:var(--smoke);border:1px solid var(--mink);border-radius:8px;width:92%;max-width:560px;max-height:88vh;overflow-y:auto;position:relative;animation:panelIn 0.3s ease}
+@keyframes panelIn{from{opacity:0;transform:translateY(20px) scale(0.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+.panel-close{position:sticky;top:0;float:right;background:var(--steel);border:none;color:#888;font-size:20px;cursor:pointer;z-index:2;width:36px;height:36px;border-radius:50%;margin:10px 10px 0 0;display:flex;align-items:center;justify-content:center}
+.panel-close:hover{color:var(--gold);background:var(--mink)}
 
-/* ====== MAP CONTAINER ====== */
-.map-wrap {
-  position: relative;
-  max-width: 1100px;
-  margin: 10px auto 0;
-  padding: 0 10px;
-}
-.map-svg-container {
-  position: relative;
-  width: 100%;
-}
-.map-svg-container svg {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-/* State base styles */
-.state-path {
-  stroke: var(--jet);
-  stroke-width: 0.8;
-  cursor: pointer;
-  transition: fill 0.2s, filter 0.2s, stroke 0.2s;
-}
-.state-path:hover {
-  filter: brightness(1.4);
-  stroke: var(--gold);
-  stroke-width: 1.5;
-}
-.state-path.approved { fill: var(--green-money); }
-.state-path.retail-only { fill: #5C4D1E; }
-.state-path.blocked { fill: var(--blood); }
-.state-path.vpn-active { fill: var(--vpn-purple); }
+.panel-header{padding:20px 24px 14px;border-bottom:1px solid var(--mink);clear:both}
+.panel-state-name{font-family:'Playfair Display',serif;font-weight:900;font-size:1.6rem;color:var(--gold)}
+.panel-status{display:inline-block;padding:3px 12px;border-radius:3px;font-family:'Oswald',sans-serif;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-top:6px}
+.panel-status.s-approved{background:var(--green);color:#fff}
+.panel-status.s-retail{background:#5C4D1E;color:var(--gold)}
+.panel-status.s-blocked{background:var(--blood);color:#fff}
+.panel-status.s-vpn{background:var(--vpn);color:#fff}
 
-/* State labels */
-.state-label {
-  font-family: 'Oswald', sans-serif;
-  font-size: 7px;
-  fill: #fff;
-  text-anchor: middle;
-  pointer-events: none;
-  font-weight: 500;
-  letter-spacing: 0.5px;
-  paint-order: stroke;
-  stroke: rgba(0,0,0,0.5);
-  stroke-width: 2px;
-}
+.panel-body{padding:16px 24px 24px}
+.section-title{font-family:'Oswald',sans-serif;font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold-dim);margin:16px 0 8px}
+.section-title:first-child{margin-top:0}
 
-/* ====== PANEL (state detail) ====== */
-.panel-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.7);
-  z-index: 100;
-  backdrop-filter: blur(4px);
-}
-.panel-overlay.open { display: flex; justify-content: center; align-items: center; }
+/* BOOK CHIPS — CLICKABLE */
+.book-grid{display:flex;flex-wrap:wrap;gap:6px}
+.book-chip{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;background:var(--steel);border:1px solid var(--mink);border-radius:4px;font-family:'Oswald',sans-serif;font-size:12px;font-weight:400;letter-spacing:0.8px;color:var(--ice);cursor:pointer;transition:all 0.2s;text-decoration:none}
+.book-chip:hover{border-color:var(--green-bright);color:#fff;background:rgba(45,107,63,0.3)}
+.book-chip .chip-icon{font-size:10px;opacity:0.6}
+.book-chip.vpn-required{border-color:rgba(155,48,255,0.3)}
+.book-chip.vpn-required:hover{border-color:var(--vpn-glow);background:rgba(106,13,173,0.2);color:var(--vpn-glow)}
+.book-chip.vpn-required .chip-icon{color:var(--vpn-glow)}
+.book-chip.available .chip-icon{color:var(--green-bright)}
+.chip-badge{font-size:8px;padding:1px 5px;border-radius:2px;font-weight:600;letter-spacing:1px;margin-left:2px}
+.chip-badge.vpn-badge{background:var(--vpn);color:#fff}
+.chip-badge.live-badge{background:var(--green);color:#fff}
+.chip-badge.dfs-badge{background:#B8860B;color:#fff}
+.chip-badge.offshore-badge{background:#444;color:#ccc}
 
-.panel {
-  background: var(--smoke);
-  border: 1px solid var(--mink);
-  border-radius: 8px;
-  width: 90%;
-  max-width: 520px;
-  max-height: 85vh;
-  overflow-y: auto;
-  position: relative;
-  animation: panelIn 0.3s ease;
-}
-@keyframes panelIn {
-  from { opacity: 0; transform: translateY(20px) scale(0.97); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
-}
-.panel-close {
-  position: absolute;
-  top: 12px;
-  right: 16px;
-  background: none;
-  border: none;
-  color: #888;
-  font-size: 22px;
-  cursor: pointer;
-  z-index: 2;
-}
-.panel-close:hover { color: var(--gold); }
+.panel-note{font-size:13px;color:#999;line-height:1.5;margin-top:6px}
+.panel-note strong{color:var(--gold)}
 
-.panel-header {
-  padding: 24px 24px 16px;
-  border-bottom: 1px solid var(--mink);
-}
-.panel-state-name {
-  font-family: 'Playfair Display', serif;
-  font-weight: 900;
-  font-size: 1.8rem;
-  color: var(--gold);
-}
-.panel-status {
-  display: inline-block;
-  padding: 3px 12px;
-  border-radius: 3px;
-  font-family: 'Oswald', sans-serif;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin-top: 8px;
-}
-.panel-status.approved { background: var(--green-money); color: #fff; }
-.panel-status.retail-only { background: #5C4D1E; color: var(--gold); }
-.panel-status.blocked { background: var(--blood); color: #fff; }
+/* VPN BANNER inside panel */
+.vpn-banner{margin-top:16px;padding:14px;background:linear-gradient(135deg,rgba(106,13,173,0.2),rgba(155,48,255,0.1));border:1px solid var(--vpn);border-radius:6px}
+.vpn-banner-title{font-family:'Oswald',sans-serif;font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--vpn-glow);margin-bottom:5px}
+.vpn-banner-text{font-size:12.5px;color:#ccc;line-height:1.5}
+.vpn-banner-text strong{color:var(--gold)}
 
-.panel-body { padding: 20px 24px 24px; }
+/* TIP BOX */
+.tip-box{margin-top:14px;padding:12px;background:rgba(45,107,63,0.1);border:1px solid rgba(45,107,63,0.3);border-radius:6px}
+.tip-box-title{font-family:'Oswald',sans-serif;font-size:12px;font-weight:600;letter-spacing:2px;color:var(--green-bright);margin-bottom:4px}
+.tip-box-text{font-size:12.5px;color:#bbb;line-height:1.5}
+.tip-box-text strong{color:var(--green-bright)}
 
-.panel-section-title {
-  font-family: 'Oswald', sans-serif;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--gold-dim);
-  margin-bottom: 10px;
-  margin-top: 16px;
-}
-.panel-section-title:first-child { margin-top: 0; }
+/* BOOK COUNT SUMMARY */
+.book-count{display:flex;gap:14px;margin:10px 0 4px;flex-wrap:wrap}
+.bc-item{font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:1px;color:#aaa}
+.bc-item span{font-weight:700;font-size:16px}
+.bc-item span.grn{color:var(--green-bright)}
+.bc-item span.prp{color:var(--vpn-glow)}
+.bc-item span.org{color:#B8860B}
+.bc-item span.gry{color:#888}
 
-.book-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-.book-chip {
-  padding: 5px 12px;
-  background: var(--steel);
-  border: 1px solid var(--mink);
-  border-radius: 4px;
-  font-family: 'Oswald', sans-serif;
-  font-size: 12px;
-  font-weight: 400;
-  letter-spacing: 1px;
-  color: var(--ice);
-  transition: all 0.2s;
-}
-.book-chip:hover {
-  border-color: var(--gold);
-  color: var(--gold);
-  background: rgba(212,175,55,0.1);
-}
+/* VPN VALUE SECTION */
+.vpn-section{max-width:1100px;margin:28px auto;padding:0 20px}
+.vpn-card{background:linear-gradient(135deg,var(--smoke) 0%,rgba(106,13,173,0.15) 100%);border:1px solid var(--vpn);border-radius:8px;padding:28px;position:relative;overflow:hidden}
+.vpn-card::before{content:'';position:absolute;top:-50%;right:-20%;width:300px;height:300px;background:radial-gradient(circle,rgba(155,48,255,0.08) 0%,transparent 70%);pointer-events:none}
+.vpn-card-header{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.vpn-icon{width:44px;height:44px;background:var(--vpn);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.vpn-card-title{font-family:'Playfair Display',serif;font-weight:900;font-size:1.4rem;color:var(--vpn-glow)}
+.vpn-card-sub{font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:2px;color:#888;text-transform:uppercase}
+.vpn-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:14px}
+.vpn-benefit{padding:14px;background:rgba(0,0,0,0.3);border-radius:6px;border-left:3px solid var(--vpn-glow)}
+.vpn-benefit-num{font-family:'Playfair Display',serif;font-weight:900;font-size:1.4rem;color:var(--gold)}
+.vpn-benefit-label{font-family:'Oswald',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#aaa;margin-top:2px}
+.vpn-benefit-desc{font-size:11.5px;color:#999;margin-top:5px;line-height:1.4}
 
-.panel-note {
-  font-size: 13px;
-  color: #999;
-  line-height: 1.5;
-  margin-top: 8px;
-}
+/* QUOTE */
+.quote-banner{max-width:1100px;margin:16px auto 28px;padding:0 20px}
+.quote-inner{text-align:center;padding:22px;border-top:1px solid var(--gold-dim);border-bottom:1px solid var(--gold-dim)}
+.quote-text{font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(1.1rem,2.5vw,1.6rem);color:var(--gold);line-height:1.3}
+.quote-attr{font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold-dim);margin-top:6px}
 
-/* VPN SECTION in panel */
-.vpn-banner {
-  margin-top: 18px;
-  padding: 16px;
-  background: linear-gradient(135deg, rgba(106,13,173,0.2), rgba(155,48,255,0.1));
-  border: 1px solid var(--vpn-purple);
-  border-radius: 6px;
-}
-.vpn-banner-title {
-  font-family: 'Oswald', sans-serif;
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--vpn-glow);
-  margin-bottom: 6px;
-}
-.vpn-banner-text {
-  font-size: 13px;
-  color: #ccc;
-  line-height: 1.5;
-}
-.vpn-banner-text strong { color: var(--gold); }
+.footer{text-align:center;padding:18px;font-size:11px;color:#555;font-family:'Oswald',sans-serif;letter-spacing:2px}
+.footer a{color:var(--gold-dim);text-decoration:none}
 
-/* ====== VPN VALUE SECTION ====== */
-.vpn-section {
-  max-width: 1100px;
-  margin: 30px auto;
-  padding: 0 20px;
-}
-.vpn-card {
-  background: linear-gradient(135deg, var(--smoke) 0%, rgba(106,13,173,0.15) 100%);
-  border: 1px solid var(--vpn-purple);
-  border-radius: 8px;
-  padding: 30px;
-  position: relative;
-  overflow: hidden;
-}
-.vpn-card::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  right: -20%;
-  width: 300px;
-  height: 300px;
-  background: radial-gradient(circle, rgba(155,48,255,0.08) 0%, transparent 70%);
-  pointer-events: none;
-}
-.vpn-card-header {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 20px;
-}
-.vpn-icon {
-  width: 48px;
-  height: 48px;
-  background: var(--vpn-purple);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 22px;
-  flex-shrink: 0;
-}
-.vpn-card-title {
-  font-family: 'Playfair Display', serif;
-  font-weight: 900;
-  font-size: 1.6rem;
-  color: var(--vpn-glow);
-}
-.vpn-card-sub {
-  font-family: 'Oswald', sans-serif;
-  font-size: 12px;
-  letter-spacing: 2px;
-  color: #888;
-  text-transform: uppercase;
-}
-
-.vpn-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 16px;
-  margin-top: 16px;
-}
-.vpn-benefit {
-  padding: 16px;
-  background: rgba(0,0,0,0.3);
-  border-radius: 6px;
-  border-left: 3px solid var(--vpn-glow);
-}
-.vpn-benefit-num {
-  font-family: 'Playfair Display', serif;
-  font-weight: 900;
-  font-size: 1.5rem;
-  color: var(--gold);
-}
-.vpn-benefit-label {
-  font-family: 'Oswald', sans-serif;
-  font-size: 11px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: #aaa;
-  margin-top: 2px;
-}
-.vpn-benefit-desc {
-  font-size: 12px;
-  color: #999;
-  margin-top: 6px;
-  line-height: 1.4;
-}
-
-/* Quote banner */
-.quote-banner {
-  max-width: 1100px;
-  margin: 20px auto 30px;
-  padding: 0 20px;
-}
-.quote-inner {
-  text-align: center;
-  padding: 24px;
-  border-top: 1px solid var(--gold-dim);
-  border-bottom: 1px solid var(--gold-dim);
-}
-.quote-text {
-  font-family: 'Playfair Display', serif;
-  font-weight: 700;
-  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
-  color: var(--gold);
-  line-height: 1.3;
-}
-.quote-attr {
-  font-family: 'Oswald', sans-serif;
-  font-size: 11px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--gold-dim);
-  margin-top: 8px;
-}
-
-/* Footer */
-.footer {
-  text-align: center;
-  padding: 20px;
-  font-size: 11px;
-  color: #555;
-  font-family: 'Oswald', sans-serif;
-  letter-spacing: 2px;
-}
-.footer a { color: var(--gold-dim); text-decoration: none; }
-
-/* Scrollbar */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--jet); }
-::-webkit-scrollbar-thumb { background: var(--mink); border-radius: 3px; }
-
-/* Pulse animation for VPN toggle */
-@keyframes vpnPulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(155,48,255,0.4); }
-  50% { box-shadow: 0 0 0 6px rgba(155,48,255,0); }
-}
-.mode-btn.vpn-pulse { animation: vpnPulse 2s infinite; }
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--jet)}::-webkit-scrollbar-thumb{background:var(--mink);border-radius:3px}
 </style>
 </head>
 <body>
 
-<!-- HERO -->
 <div class="hero">
   <div class="hero-badge">Sports Bet Arbitrage LLC</div>
-  <h1>EVERYBODY EATS<span>The SBA Territory Map — Know Your Market, Get Set Up Faster</span></h1>
-  <div class="hero-quote">"I ain't got it all figured out... but everybody gon' eat." — Paid in Full</div>
+  <h1>EVERYBODY EATS<span>Click Any State — See Your Books — Get Set Up Faster</span></h1>
+  <div class="hero-quote">"We all gon' eat. That's the only way it works."</div>
 </div>
 
-<!-- LEGEND -->
 <div class="legend-bar">
-  <div class="legend-item"><div class="legend-dot approved"></div>Online Betting Live</div>
-  <div class="legend-item"><div class="legend-dot retail-only"></div>Retail / Tribal Only</div>
+  <div class="legend-item"><div class="legend-dot approved"></div>Online Legal</div>
+  <div class="legend-item"><div class="legend-dot retail"></div>Retail / Tribal</div>
   <div class="legend-item"><div class="legend-dot blocked"></div>Not Legal</div>
   <div class="legend-item"><div class="legend-dot vpn"></div>VPN Unlocked</div>
 </div>
 
-<!-- STATS -->
 <div class="stats-row">
   <div class="stat-box"><div class="stat-num green">30</div><div class="stat-label">States Online</div></div>
   <div class="stat-box"><div class="stat-num gold">9</div><div class="stat-label">Retail / Tribal</div></div>
   <div class="stat-box"><div class="stat-num red">12</div><div class="stat-label">Not Legal</div></div>
-  <div class="stat-box"><div class="stat-num purple">39+</div><div class="stat-label">Books Supported</div></div>
+  <div class="stat-box"><div class="stat-num purple">39</div><div class="stat-label">SBA Books</div></div>
 </div>
 
-<!-- TOGGLE -->
 <div class="mode-toggle">
-  <button class="mode-btn active" onclick="setMode('normal')">STANDARD VIEW</button>
-  <button class="mode-btn vpn-pulse" onclick="setMode('vpn')">🔒 VPN MODE</button>
+  <button class="mode-btn active" id="btnNormal" onclick="setMode('normal')">STANDARD VIEW</button>
+  <button class="mode-btn vpn-pulse" id="btnVpn" onclick="setMode('vpn')">🔒 VPN MODE</button>
 </div>
 
-<!-- MAP -->
 <div class="map-wrap">
   <div class="map-svg-container" id="mapContainer"></div>
 </div>
 
-<!-- VPN VALUE SECTION -->
 <div class="vpn-section">
   <div class="vpn-card">
     <div class="vpn-card-header">
       <div class="vpn-icon">🔒</div>
       <div>
         <div class="vpn-card-title">The VPN Add-On — $1,000 / Cycle</div>
-        <div class="vpn-card-sub">Turn 30 States Into 50 — Everybody Eats</div>
+        <div class="vpn-card-sub">Turn Any State Into Every State — Everybody Eats</div>
       </div>
     </div>
-    <p style="color:#ccc;font-size:14px;line-height:1.6;margin-bottom:16px;">
-      Without VPN, you're limited to the books approved in YOUR state. With SBA's VPN package, you unlock access to sportsbooks across <strong style="color:var(--gold)">every legal market in the country</strong> — more books means more arbitrage opportunities, wider line discrepancies, and bigger profit margins. This is the edge.
+    <p style="color:#ccc;font-size:13.5px;line-height:1.6;margin-bottom:14px;">
+      Without VPN, you're limited to the books approved in YOUR state. With SBA's VPN package, unlock access to sportsbooks across <strong style="color:var(--gold)">every legal market</strong> — more books means more arbitrage lines, wider discrepancies, and bigger margins. The map above shows it: click any state, see the books you can't reach. Then toggle VPN Mode and watch them all light up.
     </p>
     <div class="vpn-grid">
-      <div class="vpn-benefit">
-        <div class="vpn-benefit-num">3x</div>
-        <div class="vpn-benefit-label">More Arb Opportunities</div>
-        <div class="vpn-benefit-desc">Access books from 30+ states instead of just yours. More lines = more mismatches = more money.</div>
-      </div>
-      <div class="vpn-benefit">
-        <div class="vpn-benefit-num">39+</div>
-        <div class="vpn-benefit-label">Sportsbooks Unlocked</div>
-        <div class="vpn-benefit-desc">DraftKings, FanDuel, BetMGM, Caesars, bet365, Fanatics, Hard Rock, and dozens more.</div>
-      </div>
-      <div class="vpn-benefit">
-        <div class="vpn-benefit-num">24/7</div>
-        <div class="vpn-benefit-label">State-Hop Instantly</div>
-        <div class="vpn-benefit-desc">Switch between state-specific books in seconds. No travel, no waiting — pure digital access.</div>
-      </div>
-      <div class="vpn-benefit">
-        <div class="vpn-benefit-num">$0</div>
-        <div class="vpn-benefit-label">Zero Blocked States</div>
-        <div class="vpn-benefit-desc">Even in restricted states, connect to approved markets and start setting up accounts immediately.</div>
-      </div>
+      <div class="vpn-benefit"><div class="vpn-benefit-num">39</div><div class="vpn-benefit-label">Total Books in SBA Genius</div><div class="vpn-benefit-desc">Every book SBA scans — regulated, offshore, DFS, prediction markets — all accessible.</div></div>
+      <div class="vpn-benefit"><div class="vpn-benefit-num">3x</div><div class="vpn-benefit-label">More Arb Opportunities</div><div class="vpn-benefit-desc">More books = more line mismatches = more money. Simple math.</div></div>
+      <div class="vpn-benefit"><div class="vpn-benefit-num">24/7</div><div class="vpn-benefit-label">State-Hop Instantly</div><div class="vpn-benefit-desc">Switch between state-specific books in seconds. No travel, no waiting.</div></div>
+      <div class="vpn-benefit"><div class="vpn-benefit-num">$0</div><div class="vpn-benefit-label">Zero Blocked States</div><div class="vpn-benefit-desc">Even in restricted states, connect to approved markets and start eating immediately.</div></div>
     </div>
   </div>
 </div>
 
-<!-- QUOTE BANNER -->
 <div class="quote-banner">
   <div class="quote-inner">
-    <div class="quote-text">"We all gon' eat. That's the only way it works."</div>
+    <div class="quote-text">"I ain't got it all figured out… but everybody gon' eat."</div>
     <div class="quote-attr">The SBA Philosophy — Inspired by Paid in Full</div>
   </div>
 </div>
 
-<!-- FOOTER -->
 <div class="footer">
   <a href="https://sportsbetarbitrage.com">sportsbetarbitrage.com</a> &nbsp;·&nbsp; SBA GENIUS V3 &nbsp;·&nbsp; © 2026 Sports Bet Arbitrage LLC
 </div>
 
-<!-- STATE DETAIL PANEL -->
-<div class="panel-overlay" id="panelOverlay" onclick="closePanel(event)">
+<!-- PANEL -->
+<div class="panel-overlay" id="panelOverlay" onclick="if(event.target===this)this.classList.remove('open')">
   <div class="panel" onclick="event.stopPropagation()">
     <button class="panel-close" onclick="document.getElementById('panelOverlay').classList.remove('open')">✕</button>
     <div class="panel-header">
@@ -606,204 +220,281 @@ body {
 </div>
 
 <script>
-// ===== STATE DATA =====
-const stateData = {
-  // ONLINE LEGAL (30 states + DC)
-  'AZ': { status: 'approved', name: 'Arizona', books: ['DraftKings','FanDuel','BetMGM','Caesars','bet365','Fanatics','BetRivers','SuperBook'] },
-  'CO': { status: 'approved', name: 'Colorado', books: ['DraftKings','FanDuel','BetMGM','Caesars','bet365','Fanatics','BetRivers','MaximBet','SuperBook'] },
-  'CT': { status: 'approved', name: 'Connecticut', books: ['DraftKings','FanDuel'] },
-  'DC': { status: 'approved', name: 'Washington DC', books: ['DraftKings','FanDuel','BetMGM','Caesars','Fanatics'] },
-  'DE': { status: 'approved', name: 'Delaware', books: ['DraftKings','FanDuel','BetMGM','Caesars'] },
-  'FL': { status: 'approved', name: 'Florida', books: ['Hard Rock Bet (Seminole Exclusive)'] },
-  'IL': { status: 'approved', name: 'Illinois', books: ['DraftKings','FanDuel','BetMGM','Caesars','bet365','Fanatics','BetRivers','PointsBet'] },
-  'IN': { status: 'approved', name: 'Indiana', books: ['DraftKings','FanDuel','BetMGM','Caesars','bet365','Fanatics','BetRivers','Hard Rock'] },
-  'IA': { status: 'approved', name: 'Iowa', books: ['DraftKings','FanDuel','BetMGM','Caesars','bet365','Fanatics','BetRivers'] },
-  'KS': { status: 'approved', name: 'Kansas', books: ['DraftKings','FanDuel','BetMGM','Caesars','Fanatics','BetRivers'] },
-  'KY': { status: 'approved', name: 'Kentucky', books: ['DraftKings','FanDuel','BetMGM','Caesars','bet365','Fanatics'] },
-  'LA': { status: 'approved', name: 'Louisiana', books: ['DraftKings','FanDuel','BetMGM','Caesars','bet365','Fanatics','BetRivers'] },
-  'ME': { status: 'approved', name: 'Maine', books: ['DraftKings','FanDuel','Caesars'] },
-  'MD': { status: 'approved', name: 'Maryland', books: ['DraftKings','FanDuel','BetMGM','Caesars','bet365','Fanatics','BetRivers'] },
-  'MA': { status: 'approved', name: 'Massachusetts', books: ['DraftKings','FanDuel','BetMGM','Caesars','Fanatics','BetRivers'] },
-  'MI': { status: 'approved', name: 'Michigan', books: ['DraftKings','FanDuel','BetMGM','Caesars','bet365','Fanatics','BetRivers','PointsBet'] },
-  'MO': { status: 'approved', name: 'Missouri', books: ['DraftKings','FanDuel','BetMGM','Caesars','Fanatics','BetRivers'] },
-  'NH': { status: 'approved', name: 'New Hampshire', books: ['DraftKings'] },
-  'NJ': { status: 'approved', name: 'New Jersey', books: ['DraftKings','FanDuel','BetMGM','Caesars','bet365','Fanatics','BetRivers','PointsBet','Unibet','Hard Rock'] },
-  'NY': { status: 'approved', name: 'New York', books: ['DraftKings','FanDuel','BetMGM','Caesars','bet365','Fanatics','BetRivers','Hard Rock'] },
-  'NC': { status: 'approved', name: 'North Carolina', books: ['DraftKings','FanDuel','BetMGM','Caesars','bet365','Fanatics','BetRivers','Hard Rock'] },
-  'OH': { status: 'approved', name: 'Ohio', books: ['DraftKings','FanDuel','BetMGM','Caesars','bet365','Fanatics','BetRivers','Hard Rock'] },
-  'OR': { status: 'approved', name: 'Oregon', books: ['DraftKings (Scoreboard)','BetMGM'] },
-  'PA': { status: 'approved', name: 'Pennsylvania', books: ['DraftKings','FanDuel','BetMGM','Caesars','bet365','Fanatics','BetRivers','Hard Rock','Unibet'] },
-  'RI': { status: 'approved', name: 'Rhode Island', books: ['Bally Bet','FanDuel'] },
-  'TN': { status: 'approved', name: 'Tennessee', books: ['DraftKings','FanDuel','BetMGM','Caesars','bet365','Fanatics','BetRivers','Hard Rock'] },
-  'VT': { status: 'approved', name: 'Vermont', books: ['DraftKings','FanDuel'] },
-  'VA': { status: 'approved', name: 'Virginia', books: ['DraftKings','FanDuel','BetMGM','Caesars','bet365','Fanatics','BetRivers','Hard Rock'] },
-  'WV': { status: 'approved', name: 'West Virginia', books: ['DraftKings','FanDuel','BetMGM','Caesars','Fanatics','BetRivers','Hard Rock'] },
-  'WY': { status: 'approved', name: 'Wyoming', books: ['DraftKings','FanDuel','BetMGM'] },
-  'NV': { status: 'approved', name: 'Nevada', books: ['BetMGM','Caesars','SuperBook','Circa','Westgate','STN','South Point'] },
+// ===== ALL 39 SBA BOOKS =====
+const ALL_BOOKS = {
+  // US-REGULATED (state-dependent)
+  'DraftKings':       { type:'regulated', url:'https://sportsbook.draftkings.com/', states:['AZ','CO','CT','IL','IN','IA','KS','KY','LA','ME','MD','MA','MI','MO','NH','NJ','NY','NC','OH','OR','PA','TN','VT','VA','WV','WY','DC'] },
+  'FanDuel':          { type:'regulated', url:'https://sportsbook.fanduel.com/', states:['AZ','CO','CT','DC','IA','IL','IN','KS','KY','LA','MA','MD','ME','MI','NC','NH','NJ','NY','OH','OR','PA','TN','VA','VT','WV','WY'] },
+  'BetMGM':           { type:'regulated', url:'https://sports.betmgm.com/', states:['AZ','CO','DC','IL','IN','IA','KS','KY','LA','MD','MA','MI','MO','MS','NV','NJ','NY','NC','OH','PA','TN','VA','WV','WY'] },
+  'Caesars':          { type:'regulated', url:'https://www.caesars.com/sportsbook-and-casino', states:['AZ','CO','DC','IL','IN','IA','KS','KY','LA','MD','MA','MI','MO','NV','NJ','NY','NC','OH','PA','TN','VA','WV','WY'] },
+  'bet365':           { type:'regulated', url:'https://www.bet365.com/', states:['AZ','CO','IN','IA','KY','LA','NJ','NY','NC','OH','PA','VA'] },
+  'Fanatics':         { type:'regulated', url:'https://sportsbook.fanatics.com/', states:['AZ','CO','CT','DC','IL','IN','IA','KS','KY','LA','MD','MA','MI','MO','NJ','NY','NC','OH','PA','TN','VA','WV'] },
+  'BetRivers':        { type:'regulated', url:'https://www.betrivers.com/', states:['AZ','CO','CT','IL','IN','IA','LA','MD','MI','NJ','NY','NC','OH','PA','VA','WV'] },
+  'Hard Rock':        { type:'regulated', url:'https://www.hardrocksportsbook.com/', states:['AZ','FL','IN','NJ','OH','TN','VA'] },
+  'Bally Bet':        { type:'regulated', url:'https://www.ballybet.com/', states:['AZ','CO','IA','IN','NY','OH','RI','VA'] },
+  'betPARX':          { type:'regulated', url:'https://www.betparx.com/', states:['NJ','OH','PA','MD'] },
+  'theScore Bet':     { type:'regulated', url:'https://www.thescore.bet/', states:['CO','IN','IA','NJ','OH','VA'] },
+  'Betway':           { type:'regulated', url:'https://www.betway.com/', states:['AZ','CO','IN','NJ','OH','PA','VA'] },
+  'William Hill':     { type:'regulated', url:'https://www.williamhill.com/us', states:['NV','DC'] },
+  'Novig':            { type:'regulated', url:'https://www.novig.com/', states:['NJ','IN','KS','KY','MD','OH','VA','CO'] },
 
-  // RETAIL / TRIBAL ONLY (9)
-  'AR': { status: 'retail-only', name: 'Arkansas', books: ['Oaklawn (Retail)','Southland (Retail)','Saracen (Retail)'], note: 'In-person only at licensed casinos. Limited online via casino apps on-premise.' },
-  'MS': { status: 'retail-only', name: 'Mississippi', books: ['BetMGM (On-Premise)','Caesars (On-Premise)','FanDuel (On-Premise)'], note: 'Mobile betting only within casino grounds. No statewide online.' },
-  'MT': { status: 'retail-only', name: 'Montana', books: ['Sports Bet Montana (Lottery)'], note: 'Lottery-run terminals and app only at authorized locations.' },
-  'NM': { status: 'retail-only', name: 'New Mexico', books: ['Tribal Casinos Only'], note: 'Tribal gaming compacts. No state-regulated online betting.' },
-  'ND': { status: 'retail-only', name: 'North Dakota', books: ['Tribal Casinos Only'], note: 'Tribal Class III compact. Limited venues.' },
-  'NE': { status: 'retail-only', name: 'Nebraska', books: ['Retail Locations'], note: 'Retail launched; online expansion under discussion.' },
-  'SD': { status: 'retail-only', name: 'South Dakota', books: ['Deadwood Casinos','Tribal Casinos'], note: 'In-person at Deadwood and tribal locations only.' },
-  'WA': { status: 'retail-only', name: 'Washington', books: ['Tribal Casinos Only'], note: 'Tribal exclusivity. On-premise mobile at some locations.' },
-  'WI': { status: 'retail-only', name: 'Wisconsin', books: ['Tribal Casinos Only'], note: 'Tribal compacts. Online legalization bill pending for 2026.' },
+  // DFS PLATFORMS (wider availability)
+  'DraftKings Pick6 DFS 2+':  { type:'dfs', url:'https://pick6.draftkings.com/', states:['ALL_DFS'] },
+  'Betr Picks DFS 2+':        { type:'dfs', url:'https://www.betr.app/', states:['ALL_DFS'] },
+  'PrizePicks DFS 2+':        { type:'dfs', url:'https://www.prizepicks.com/', states:['ALL_DFS'] },
+  'Underdog DFS 2+':          { type:'dfs', url:'https://underdogfantasy.com/', states:['ALL_DFS'] },
+  'Fliff':                     { type:'dfs', url:'https://www.getfliff.com/', states:['ALL_DFS'] },
+  'Rebet':                     { type:'dfs', url:'https://www.rebet.app/', states:['ALL_DFS'] },
 
-  // NOT LEGAL (11)
-  'AL': { status: 'blocked', name: 'Alabama', books: [], note: 'No sports betting. Constitutional amendment needed.' },
-  'AK': { status: 'blocked', name: 'Alaska', books: [], note: 'HB 145 introduced 2025 but no movement yet.' },
-  'CA': { status: 'blocked', name: 'California', books: [], note: 'Props 26 & 27 rejected in 2022. Earliest ballot: 2026–2028.' },
-  'GA': { status: 'blocked', name: 'Georgia', books: [], note: 'Multiple failed bills. Strong candidate for future legalization.' },
-  'HI': { status: 'blocked', name: 'Hawaii', books: [], note: 'HB 1308 nearly passed in 2025. Top candidate for 2026.' },
-  'ID': { status: 'blocked', name: 'Idaho', books: [], note: 'No legislation introduced. Considered unlikely this decade.' },
-  'MN': { status: 'blocked', name: 'Minnesota', books: [], note: 'Tribal vs racetrack disputes blocking progress. Ongoing.' },
-  'OK': { status: 'blocked', name: 'Oklahoma', books: [], note: 'Failed in 2024. Tribal compact complexities.' },
-  'SC': { status: 'blocked', name: 'South Carolina', books: [], note: 'No legislation. Conservative legislature.' },
-  'TX': { status: 'blocked', name: 'Texas', books: [], note: 'House support exists but Senate blocked. Huge potential market.' },
-  'UT': { status: 'blocked', name: 'Utah', books: [], note: 'Constitutional ban on all gambling. Expected last holdout.' }
+  // PREDICTION MARKETS
+  'Kalshi':       { type:'prediction', url:'https://kalshi.com/', states:['ALL_DFS'] },
+  'Polymarket':   { type:'prediction', url:'https://polymarket.com/', states:['ALL_DFS'] },
+  'Prophet X':    { type:'prediction', url:'https://www.prophetx.co/', states:['ALL_DFS'] },
+
+  // OFFSHORE / VPN REQUIRED
+  'Bovada':       { type:'offshore', url:'https://www.bovada.lv/', states:['VPN'] },
+  'BetOnline':    { type:'offshore', url:'https://www.betonline.ag/', states:['VPN'] },
+  'MyBookie':     { type:'offshore', url:'https://www.mybookie.ag/', states:['VPN'] },
+  'BetUS':        { type:'offshore', url:'https://www.betus.com.pa/', states:['VPN'] },
+  '1xBet':        { type:'offshore', url:'https://1xbet.com/', states:['VPN'] },
+  'BetAnything':  { type:'offshore', url:'https://www.betanything.com/', states:['VPN'] },
+  'BetOpenly':    { type:'offshore', url:'https://www.betopenly.com/', states:['VPN'] },
+  'Betsson':      { type:'offshore', url:'https://www.betsson.com/', states:['VPN'] },
+  'Coolbet':      { type:'offshore', url:'https://www.coolbet.com/', states:['VPN'] },
+  'Everygame':    { type:'offshore', url:'https://www.everygame.eu/', states:['VPN'] },
+  'GTbets':       { type:'offshore', url:'https://www.gtbets.eu/', states:['VPN'] },
+  'LeoVegas':     { type:'offshore', url:'https://www.leovegas.com/', states:['VPN'] },
+  'LowVig':       { type:'offshore', url:'https://www.lowvig.ag/', states:['VPN'] },
+  'Marathon Bet':  { type:'offshore', url:'https://www.marathonbet.com/', states:['VPN'] },
+  'Pinnacle':     { type:'offshore', url:'https://www.pinnacle.com/', states:['VPN'] },
+  'SupraBets':    { type:'offshore', url:'https://www.suprabets.com/', states:['VPN'] }
 };
+
+// STATE DATA
+const stateData = {
+  'AZ':{s:'approved',n:'Arizona'},'CO':{s:'approved',n:'Colorado'},'CT':{s:'approved',n:'Connecticut'},
+  'DC':{s:'approved',n:'Washington DC'},'DE':{s:'approved',n:'Delaware'},'FL':{s:'approved',n:'Florida'},
+  'IL':{s:'approved',n:'Illinois'},'IN':{s:'approved',n:'Indiana'},'IA':{s:'approved',n:'Iowa'},
+  'KS':{s:'approved',n:'Kansas'},'KY':{s:'approved',n:'Kentucky'},'LA':{s:'approved',n:'Louisiana'},
+  'ME':{s:'approved',n:'Maine'},'MD':{s:'approved',n:'Maryland'},'MA':{s:'approved',n:'Massachusetts'},
+  'MI':{s:'approved',n:'Michigan'},'MO':{s:'approved',n:'Missouri'},'NH':{s:'approved',n:'New Hampshire'},
+  'NJ':{s:'approved',n:'New Jersey'},'NY':{s:'approved',n:'New York'},'NC':{s:'approved',n:'North Carolina'},
+  'NV':{s:'approved',n:'Nevada'},'OH':{s:'approved',n:'Ohio'},'OR':{s:'approved',n:'Oregon'},
+  'PA':{s:'approved',n:'Pennsylvania'},'RI':{s:'approved',n:'Rhode Island'},'TN':{s:'approved',n:'Tennessee'},
+  'VT':{s:'approved',n:'Vermont'},'VA':{s:'approved',n:'Virginia'},'WV':{s:'approved',n:'West Virginia'},
+  'WY':{s:'approved',n:'Wyoming'},
+  'AR':{s:'retail-only',n:'Arkansas',note:'In-person only at licensed casinos. Limited on-premise mobile.'},
+  'MS':{s:'retail-only',n:'Mississippi',note:'Mobile betting only within casino grounds. No statewide online.'},
+  'MT':{s:'retail-only',n:'Montana',note:'Lottery-run terminals and app only at authorized locations.'},
+  'NM':{s:'retail-only',n:'New Mexico',note:'Tribal gaming compacts only. No state-regulated online.'},
+  'ND':{s:'retail-only',n:'North Dakota',note:'Tribal Class III compact. Limited venues.'},
+  'NE':{s:'retail-only',n:'Nebraska',note:'Retail launched. Online expansion under discussion.'},
+  'SD':{s:'retail-only',n:'South Dakota',note:'In-person at Deadwood and tribal locations only.'},
+  'WA':{s:'retail-only',n:'Washington',note:'Tribal exclusivity. On-premise mobile at some locations.'},
+  'WI':{s:'retail-only',n:'Wisconsin',note:'Tribal compacts. Online legalization bill pending 2026.'},
+  'AL':{s:'blocked',n:'Alabama',note:'No sports betting. Constitutional amendment needed.'},
+  'AK':{s:'blocked',n:'Alaska',note:'HB 145 introduced 2025 — no movement yet.'},
+  'CA':{s:'blocked',n:'California',note:'Props 26 & 27 rejected 2022. Earliest ballot: 2026–2028.'},
+  'GA':{s:'blocked',n:'Georgia',note:'Multiple failed bills. Strong candidate for future legalization.'},
+  'HI':{s:'blocked',n:'Hawaii',note:'HB 1308 nearly passed 2025. Top candidate for 2026.'},
+  'ID':{s:'blocked',n:'Idaho',note:'No legislation introduced. Unlikely this decade.'},
+  'MN':{s:'blocked',n:'Minnesota',note:'Tribal vs racetrack disputes blocking progress.'},
+  'OK':{s:'blocked',n:'Oklahoma',note:'Failed 2024. Tribal compact complexities.'},
+  'SC':{s:'blocked',n:'South Carolina',note:'No legislation. Conservative legislature.'},
+  'TX':{s:'blocked',n:'Texas',note:'House support exists but Senate blocked. Huge potential market.'},
+  'UT':{s:'blocked',n:'Utah',note:'Constitutional ban on all gambling. Expected last holdout.'}
+};
+
+// Get books for a state
+function getBooksForState(abbr) {
+  const vpnMode = currentMode === 'vpn';
+  const regulated = [], dfs = [], prediction = [], offshore = [];
+
+  Object.entries(ALL_BOOKS).forEach(([name, info]) => {
+    const avail = info.states.includes(abbr) || info.states.includes('ALL_DFS');
+    const isOffshore = info.type === 'offshore';
+    const needsVpn = isOffshore || (!avail && info.type === 'regulated');
+
+    if (info.type === 'regulated') {
+      if (avail) regulated.push({ name, url: info.url, vpn: false });
+      else if (vpnMode) regulated.push({ name, url: info.url, vpn: true });
+    } else if (info.type === 'dfs') {
+      dfs.push({ name, url: info.url, vpn: false });
+    } else if (info.type === 'prediction') {
+      prediction.push({ name, url: info.url, vpn: false });
+    } else if (info.type === 'offshore') {
+      offshore.push({ name, url: info.url, vpn: true });
+    }
+  });
+
+  return { regulated, dfs, prediction, offshore };
+}
 
 let currentMode = 'normal';
 
 function setMode(mode) {
   currentMode = mode;
-  document.querySelectorAll('.mode-btn').forEach((b,i) => {
-    b.classList.toggle('active', (mode === 'normal' && i === 0) || (mode === 'vpn' && i === 1));
-  });
-  // Re-color states
+  document.getElementById('btnNormal').className = 'mode-btn' + (mode==='normal'?' active':'');
+  document.getElementById('btnVpn').className = 'mode-btn' + (mode==='vpn'?' active vpn-on':' vpn-pulse');
   Object.keys(stateData).forEach(abbr => {
-    const el = document.getElementById('state-' + abbr);
-    if (!el) return;
+    const el = document.getElementById('state-'+abbr);
+    if(!el) return;
     el.className = 'state-path';
-    if (mode === 'vpn') {
-      // In VPN mode, everything lights up
-      el.classList.add('vpn-active');
-    } else {
-      el.classList.add(stateData[abbr].status);
-    }
+    el.classList.add(mode==='vpn' ? 'vpn-active' : stateData[abbr].s);
   });
+}
+
+function chipHTML(book) {
+  const iconClass = book.vpn ? 'vpn-required' : 'available';
+  const icon = book.vpn ? '🔒' : '↗';
+  const badge = book.vpn ? '<span class="chip-badge vpn-badge">VPN</span>' : '';
+  return `<a href="${book.url}" target="_blank" rel="noopener" class="book-chip ${iconClass}"><span class="chip-icon">${icon}</span>${book.name}${badge}</a>`;
 }
 
 function openPanel(abbr) {
   const d = stateData[abbr];
-  if (!d) return;
-  document.getElementById('panelStateName').textContent = d.name;
+  if(!d) return;
+  document.getElementById('panelStateName').textContent = d.n;
   const statusEl = document.getElementById('panelStatus');
-  statusEl.className = 'panel-status ' + d.status;
-  const statusLabels = { 'approved': 'ONLINE LEGAL', 'retail-only': 'RETAIL / TRIBAL ONLY', 'blocked': 'NOT LEGAL' };
-  statusEl.textContent = currentMode === 'vpn' && d.status !== 'approved' ? '🔒 VPN UNLOCKED' : statusLabels[d.status];
-  if (currentMode === 'vpn' && d.status !== 'approved') {
-    statusEl.className = 'panel-status';
-    statusEl.style.background = 'var(--vpn-purple)';
-    statusEl.style.color = '#fff';
+  const vpnMode = currentMode === 'vpn';
+
+  if (vpnMode && d.s !== 'approved') {
+    statusEl.className = 'panel-status s-vpn';
+    statusEl.textContent = '🔒 VPN UNLOCKED';
   } else {
-    statusEl.style.background = '';
-    statusEl.style.color = '';
+    const cls = d.s === 'approved' ? 's-approved' : d.s === 'retail-only' ? 's-retail' : 's-blocked';
+    const lbl = d.s === 'approved' ? 'ONLINE LEGAL' : d.s === 'retail-only' ? 'RETAIL / TRIBAL' : 'NOT LEGAL';
+    statusEl.className = 'panel-status ' + cls;
+    statusEl.textContent = lbl;
   }
 
+  const books = getBooksForState(abbr);
   let html = '';
-  if (d.books.length > 0) {
-    html += `<div class="panel-section-title">Available Sportsbooks</div><div class="book-grid">`;
-    d.books.forEach(b => html += `<div class="book-chip">${b}</div>`);
-    html += `</div>`;
-  }
-  if (d.note) {
-    html += `<div class="panel-section-title">Intel</div><div class="panel-note">${d.note}</div>`;
+
+  // COUNTS
+  const regCount = books.regulated.length;
+  const dfsCount = books.dfs.length;
+  const predCount = books.prediction.length;
+  const offCount = books.offshore.length;
+  const total = regCount + dfsCount + predCount + offCount;
+
+  html += `<div class="book-count">
+    <div class="bc-item"><span class="grn">${total}</span> TOTAL BOOKS</div>
+    <div class="bc-item"><span class="grn">${regCount}</span> REGULATED</div>
+    <div class="bc-item"><span class="org">${dfsCount}</span> DFS</div>
+    <div class="bc-item"><span class="prp">${offCount}</span> OFFSHORE</div>
+  </div>`;
+
+  // REGULATED
+  if (books.regulated.length) {
+    html += `<div class="section-title">🏛️ US-Regulated Sportsbooks ${vpnMode && d.s !== 'approved' ? '(via VPN)' : ''}</div>`;
+    html += `<div class="book-grid">${books.regulated.map(chipHTML).join('')}</div>`;
   }
 
-  if (d.status === 'blocked') {
-    if (currentMode === 'vpn') {
+  // DFS
+  if (books.dfs.length) {
+    html += `<div class="section-title">🎯 DFS / Pick Platforms</div>`;
+    html += `<div class="book-grid">${books.dfs.map(chipHTML).join('')}</div>`;
+  }
+
+  // PREDICTION
+  if (books.prediction.length) {
+    html += `<div class="section-title">📊 Prediction Markets</div>`;
+    html += `<div class="book-grid">${books.prediction.map(chipHTML).join('')}</div>`;
+  }
+
+  // OFFSHORE
+  if (books.offshore.length) {
+    html += `<div class="section-title">🌐 Offshore / International (VPN)</div>`;
+    html += `<div class="book-grid">${books.offshore.map(chipHTML).join('')}</div>`;
+  }
+
+  // NOTE
+  if (d.note) {
+    html += `<div class="section-title">📋 Intel</div><div class="panel-note">${d.note}</div>`;
+  }
+
+  // VPN CTA for blocked/retail states
+  if (d.s === 'blocked' || d.s === 'retail-only') {
+    if (vpnMode) {
       html += `<div class="vpn-banner">
-        <div class="vpn-banner-title">🔒 VPN Changes The Game</div>
-        <div class="vpn-banner-text">With SBA's VPN add-on, you're not stuck waiting for ${d.name} to legalize. Connect to <strong>any approved state</strong> and access 39+ sportsbooks instantly. Set up accounts, find arbs, and start eating — no borders, no limits.</div>
+        <div class="vpn-banner-title">🔒 VPN Mode Active — Full Access</div>
+        <div class="vpn-banner-text">You're seeing <strong>every book SBA supports</strong>. Click any chip above to open the sportsbook and create your account. With the VPN, ${d.n} members eat just like New Jersey members. No limits.</div>
       </div>`;
     } else {
       html += `<div class="vpn-banner">
-        <div class="vpn-banner-title">💡 Don't Wait — Get The VPN</div>
-        <div class="vpn-banner-text">Members in ${d.name} use SBA's <strong>$1,000 VPN add-on</strong> to access all 30+ legal online markets. Why sit on the sidelines when everybody else is eating?</div>
+        <div class="vpn-banner-title">💡 ${d.n} Is Limited — VPN Changes That</div>
+        <div class="vpn-banner-text">Toggle <strong>VPN Mode</strong> above to see ALL 39 books you can access with SBA's <strong>$1,000 VPN add-on</strong>. More books = more arbs = more money. Why sit on the sidelines when everybody else is eating?</div>
       </div>`;
     }
-  } else if (d.status === 'retail-only') {
-    html += `<div class="vpn-banner">
-      <div class="vpn-banner-title">⚡ Limited Market — VPN Expands Your Reach</div>
-      <div class="vpn-banner-text">${d.name} only offers retail/tribal betting. SBA's VPN gives you access to the <strong>full online ecosystem</strong> — 39+ sportsbooks with statewide mobile access across approved states. More books = more arbs = more profit.</div>
-    </div>`;
   } else {
-    // Approved state — show what they already have
-    html += `<div class="panel-section-title" style="margin-top:18px;">SBA Genius Tip</div>
-    <div class="panel-note">You have <strong style="color:var(--green-bright)">${d.books.length} books</strong> in ${d.name}. Sign up for ALL of them — the more accounts you have, the more line discrepancies SBA Genius can find for you. Every book is an edge.</div>`;
+    // Approved state tip
+    const vpnOnlyCount = offCount;
+    html += `<div class="tip-box">
+      <div class="tip-box-title">💰 SBA Genius Tip</div>
+      <div class="tip-box-text">You have <strong>${regCount} regulated books</strong> in ${d.n}. Sign up for ALL of them — more accounts = more line discrepancies for SBA Genius to find. Plus the <strong>${vpnOnlyCount} offshore books</strong> via VPN give you even more edge. Click each chip to go straight to signup.</div>
+    </div>`;
   }
 
   document.getElementById('panelBody').innerHTML = html;
   document.getElementById('panelOverlay').classList.add('open');
 }
 
-function closePanel(e) {
-  if (e.target === document.getElementById('panelOverlay')) {
-    document.getElementById('panelOverlay').classList.remove('open');
-  }
-}
-
-// ===== BUILD SVG MAP =====
-// Simplified US state paths
-const statePaths = {
-'AL': 'M628,396 L628,345 L666,345 L672,399 L668,420 L655,420 L650,410 L628,396Z',
-'AK': 'M120,468 L158,468 L175,455 L185,462 L175,478 L160,488 L130,490 L115,482 L120,468Z',
-'AZ': 'M175,345 L220,345 L230,395 L225,420 L185,420 L170,400 L175,345Z',
-'AR': 'M565,370 L615,370 L620,340 L565,340 L560,355 L565,370Z',
-'CA': 'M100,240 L130,230 L145,270 L150,330 L135,380 L105,370 L90,310 L100,240Z',
-'CO': 'M270,270 L340,270 L340,320 L270,320 L270,270Z',
-'CT': 'M810,210 L835,205 L838,220 L815,225 L810,210Z',
-'DE': 'M775,265 L785,258 L790,280 L780,285 L775,265Z',
-'FL': 'M660,420 L710,410 L740,435 L725,480 L700,500 L680,480 L660,445 L655,420 L660,420Z',
-'DC': 'M762,280 L768,276 L770,282 L764,284 L762,280Z',
-'GA': 'M670,345 L710,345 L715,400 L710,410 L660,420 L655,420 L668,400 L672,365 L670,345Z',
-'HI': 'M240,470 L260,462 L275,468 L278,480 L265,488 L245,485 L240,470Z',
-'ID': 'M195,130 L220,120 L230,170 L225,220 L200,230 L190,195 L195,130Z',
-'IL': 'M590,230 L620,225 L625,300 L615,320 L600,330 L585,310 L590,230Z',
-'IN': 'M625,235 L655,235 L655,310 L625,315 L620,290 L625,235Z',
-'IA': 'M520,220 L585,215 L590,260 L525,265 L520,220Z',
-'KS': 'M400,300 L490,300 L490,340 L400,340 L400,300Z',
-'KY': 'M620,295 L700,280 L710,300 L660,320 L625,320 L620,295Z',
-'LA': 'M560,410 L600,395 L610,425 L595,450 L570,445 L555,430 L560,410Z',
-'ME': 'M830,120 L850,110 L860,145 L845,175 L825,170 L820,140 L830,120Z',
-'MD': 'M725,260 L775,250 L780,275 L760,285 L730,280 L725,260Z',
-'MA': 'M820,195 L855,188 L858,200 L835,205 L820,200 L820,195Z',
-'MI': 'M610,150 L660,140 L670,185 L660,220 L630,230 L610,200 L620,170 L610,150Z',
-'MN': 'M490,110 L540,105 L545,195 L530,210 L490,210 L485,150 L490,110Z',
-'MS': 'M600,345 L628,345 L628,396 L625,420 L610,425 L600,395 L600,345Z',
-'MO': 'M520,280 L590,270 L600,330 L565,340 L530,340 L520,310 L520,280Z',
-'MT': 'M225,100 L330,95 L335,155 L230,165 L225,100Z',
-'NE': 'M365,240 L460,235 L465,275 L400,280 L365,275 L365,240Z',
-'NV': 'M145,220 L185,215 L185,310 L155,340 L135,310 L145,220Z',
-'NH': 'M825,150 L840,145 L845,180 L830,185 L825,170 L825,150Z',
-'NJ': 'M785,235 L798,230 L800,265 L790,275 L780,260 L785,235Z',
-'NM': 'M225,340 L295,335 L300,405 L230,410 L225,340Z',
-'NY': 'M730,165 L810,150 L820,195 L810,215 L780,230 L740,220 L730,195 L730,165Z',
-'NC': 'M660,320 L760,300 L780,320 L740,340 L670,345 L660,320Z',
-'ND': 'M370,105 L450,100 L455,155 L375,160 L370,105Z',
-'OH': 'M660,230 L710,225 L715,275 L700,285 L660,285 L655,245 L660,230Z',
-'OK': 'M390,345 L490,340 L500,365 L490,380 L400,385 L385,370 L390,345Z',
-'OR': 'M105,130 L180,120 L185,185 L170,200 L110,200 L90,175 L105,130Z',
-'PA': 'M710,220 L780,210 L785,245 L720,255 L710,220Z',
-'RI': 'M840,210 L850,207 L852,218 L842,220 L840,210Z',
-'SC': 'M700,330 L745,325 L750,355 L720,370 L700,360 L700,330Z',
-'SD': 'M370,165 L455,160 L460,220 L375,225 L370,165Z',
-'TN': 'M600,320 L700,305 L710,325 L700,340 L610,345 L600,330 L600,320Z',
-'TX': 'M340,370 L420,365 L450,400 L470,450 L440,490 L400,490 L360,460 L330,430 L320,400 L340,370Z',
-'UT': 'M215,225 L270,220 L270,300 L225,305 L215,270 L215,225Z',
-'VT': 'M810,140 L825,137 L828,170 L815,175 L810,155 L810,140Z',
-'VA': 'M695,280 L770,260 L780,290 L760,310 L700,310 L695,280Z',
-'WA': 'M110,75 L195,70 L200,130 L185,140 L115,140 L105,115 L110,75Z',
-'WV': 'M700,265 L725,258 L730,290 L715,305 L700,295 L700,265Z',
-'WI': 'M545,130 L600,125 L610,195 L600,220 L555,225 L545,195 L545,130Z',
-'WY': 'M255,170 L335,165 L340,225 L260,230 L255,170Z'
+// ===== SVG MAP =====
+const paths = {
+'AL':'M628,396 L628,345 L666,345 L672,399 L668,420 L655,420 L650,410 L628,396Z',
+'AK':'M120,468 L158,468 L175,455 L185,462 L175,478 L160,488 L130,490 L115,482 L120,468Z',
+'AZ':'M175,345 L220,345 L230,395 L225,420 L185,420 L170,400 L175,345Z',
+'AR':'M565,370 L615,370 L620,340 L565,340 L560,355 L565,370Z',
+'CA':'M100,240 L130,230 L145,270 L150,330 L135,380 L105,370 L90,310 L100,240Z',
+'CO':'M270,270 L340,270 L340,320 L270,320 L270,270Z',
+'CT':'M810,210 L835,205 L838,220 L815,225 L810,210Z',
+'DE':'M775,265 L785,258 L790,280 L780,285 L775,265Z',
+'FL':'M660,420 L710,410 L740,435 L725,480 L700,500 L680,480 L660,445 L655,420 L660,420Z',
+'DC':'M762,280 L768,276 L770,282 L764,284 L762,280Z',
+'GA':'M670,345 L710,345 L715,400 L710,410 L660,420 L655,420 L668,400 L672,365 L670,345Z',
+'HI':'M240,470 L260,462 L275,468 L278,480 L265,488 L245,485 L240,470Z',
+'ID':'M195,130 L220,120 L230,170 L225,220 L200,230 L190,195 L195,130Z',
+'IL':'M590,230 L620,225 L625,300 L615,320 L600,330 L585,310 L590,230Z',
+'IN':'M625,235 L655,235 L655,310 L625,315 L620,290 L625,235Z',
+'IA':'M520,220 L585,215 L590,260 L525,265 L520,220Z',
+'KS':'M400,300 L490,300 L490,340 L400,340 L400,300Z',
+'KY':'M620,295 L700,280 L710,300 L660,320 L625,320 L620,295Z',
+'LA':'M560,410 L600,395 L610,425 L595,450 L570,445 L555,430 L560,410Z',
+'ME':'M830,120 L850,110 L860,145 L845,175 L825,170 L820,140 L830,120Z',
+'MD':'M725,260 L775,250 L780,275 L760,285 L730,280 L725,260Z',
+'MA':'M820,195 L855,188 L858,200 L835,205 L820,200 L820,195Z',
+'MI':'M610,150 L660,140 L670,185 L660,220 L630,230 L610,200 L620,170 L610,150Z',
+'MN':'M490,110 L540,105 L545,195 L530,210 L490,210 L485,150 L490,110Z',
+'MS':'M600,345 L628,345 L628,396 L625,420 L610,425 L600,395 L600,345Z',
+'MO':'M520,280 L590,270 L600,330 L565,340 L530,340 L520,310 L520,280Z',
+'MT':'M225,100 L330,95 L335,155 L230,165 L225,100Z',
+'NE':'M365,240 L460,235 L465,275 L400,280 L365,275 L365,240Z',
+'NV':'M145,220 L185,215 L185,310 L155,340 L135,310 L145,220Z',
+'NH':'M825,150 L840,145 L845,180 L830,185 L825,170 L825,150Z',
+'NJ':'M785,235 L798,230 L800,265 L790,275 L780,260 L785,235Z',
+'NM':'M225,340 L295,335 L300,405 L230,410 L225,340Z',
+'NY':'M730,165 L810,150 L820,195 L810,215 L780,230 L740,220 L730,195 L730,165Z',
+'NC':'M660,320 L760,300 L780,320 L740,340 L670,345 L660,320Z',
+'ND':'M370,105 L450,100 L455,155 L375,160 L370,105Z',
+'OH':'M660,230 L710,225 L715,275 L700,285 L660,285 L655,245 L660,230Z',
+'OK':'M390,345 L490,340 L500,365 L490,380 L400,385 L385,370 L390,345Z',
+'OR':'M105,130 L180,120 L185,185 L170,200 L110,200 L90,175 L105,130Z',
+'PA':'M710,220 L780,210 L785,245 L720,255 L710,220Z',
+'RI':'M840,210 L850,207 L852,218 L842,220 L840,210Z',
+'SC':'M700,330 L745,325 L750,355 L720,370 L700,360 L700,330Z',
+'SD':'M370,165 L455,160 L460,220 L375,225 L370,165Z',
+'TN':'M600,320 L700,305 L710,325 L700,340 L610,345 L600,330 L600,320Z',
+'TX':'M340,370 L420,365 L450,400 L470,450 L440,490 L400,490 L360,460 L330,430 L320,400 L340,370Z',
+'UT':'M215,225 L270,220 L270,300 L225,305 L215,270 L215,225Z',
+'VT':'M810,140 L825,137 L828,170 L815,175 L810,155 L810,140Z',
+'VA':'M695,280 L770,260 L780,290 L760,310 L700,310 L695,280Z',
+'WA':'M110,75 L195,70 L200,130 L185,140 L115,140 L105,115 L110,75Z',
+'WV':'M700,265 L725,258 L730,290 L715,305 L700,295 L700,265Z',
+'WI':'M545,130 L600,125 L610,195 L600,220 L555,225 L545,195 L545,130Z',
+'WY':'M255,170 L335,165 L340,225 L260,230 L255,170Z'
 };
-
-const stateLabels = {
+const labels = {
 'AL':[648,375],'AK':[148,478],'AZ':[200,380],'AR':[588,355],'CA':[118,310],
 'CO':[305,295],'CT':[825,215],'DE':[783,272],'FL':[695,455],'DC':[766,280],
 'GA':[690,375],'HI':[260,478],'ID':[210,175],'IL':[605,275],'IN':[640,275],
@@ -817,18 +508,15 @@ const stateLabels = {
 'WY':[298,198]
 };
 
-// Build SVG
 let svg = `<svg viewBox="70 60 820 450" xmlns="http://www.w3.org/2000/svg">`;
-// Draw state shapes
-Object.keys(statePaths).forEach(abbr => {
-  const d = stateData[abbr];
-  const cls = d ? d.status : 'blocked';
-  svg += `<path id="state-${abbr}" class="state-path ${cls}" d="${statePaths[abbr]}" onclick="openPanel('${abbr}')" />`;
+Object.keys(paths).forEach(a => {
+  const d = stateData[a];
+  const cls = d ? d.s : 'blocked';
+  svg += `<path id="state-${a}" class="state-path ${cls}" d="${paths[a]}" onclick="openPanel('${a}')" />`;
 });
-// Draw labels
-Object.keys(stateLabels).forEach(abbr => {
-  const [x, y] = stateLabels[abbr];
-  svg += `<text class="state-label" x="${x}" y="${y}">${abbr}</text>`;
+Object.keys(labels).forEach(a => {
+  const [x,y] = labels[a];
+  svg += `<text class="state-label" x="${x}" y="${y}">${a}</text>`;
 });
 svg += `</svg>`;
 document.getElementById('mapContainer').innerHTML = svg;
