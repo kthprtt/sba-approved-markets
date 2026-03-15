@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SBA — EVERYBODY EATS</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@300;400;600&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --gold: #D4AF37;
+  --gold-bright: #FFD700;
+  --gold-dim: #8B7536;
+  --cream: #F5E6C8;
+  --blood: #8B0000;
+  --blood-bright: #CC0000;
+  --jet: #0A0A0A;
+  --smoke: #1A1A1A;
+  --steel: #2A2A2A;
+  --mink: #3A3A3A;
+  --ice: #E0E0E0;
+  --green-money: #2D6B3F;
+  --green-bright: #4CAF50;
+  --vpn-purple: #6A0DAD;
+  --vpn-glow: #9B30FF;
+}
+
+body {
+  background: var(--jet);
+  color: var(--ice);
+  font-family: 'Source Sans 3', sans-serif;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* ====== HERO / TITLE BANNER ====== */
+.hero {
+  position: relative;
+  padding: 40px 20px 30px;
+  text-align: center;
+  background: linear-gradient(180deg, #000 0%, var(--jet) 100%);
+  border-bottom: 2px solid var(--gold-dim);
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0px,
+    transparent 3px,
+    rgba(212,175,55,0.03) 3px,
+    rgba(212,175,55,0.03) 4px
+  );
+  pointer-events: none;
+}
+.hero-badge {
+  display: inline-block;
+  padding: 4px 20px;
+  background: var(--gold);
+  color: var(--jet);
+  font-family: 'Oswald', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  color: var(--gold);
+  text-shadow: 0 0 40px rgba(212,175,55,0.3);
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+.hero h1 span {
+  display: block;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 300;
+  font-size: clamp(0.9rem, 2vw, 1.2rem);
+  color: var(--cream);
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  margin-top: 8px;
+}
+.hero-quote {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: clamp(0.85rem, 1.5vw, 1.05rem);
+  color: var(--gold-dim);
+  margin-top: 10px;
+  opacity: 0.8;
+}
+
+/* ====== LEGEND BAR ====== */
+.legend-bar {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 14px 20px;
+  background: var(--smoke);
+  border-bottom: 1px solid var(--mink);
+  flex-wrap: wrap;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--ice);
+}
+.legend-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 2px;
+}
+.legend-dot.approved { background: var(--green-money); border: 1px solid var(--green-bright); }
+.legend-dot.retail-only { background: #5C4D1E; border: 1px solid var(--gold); }
+.legend-dot.blocked { background: var(--blood); border: 1px solid var(--blood-bright); }
+.legend-dot.vpn { background: var(--vpn-purple); border: 1px solid var(--vpn-glow); }
+
+/* ====== STATS ROW ====== */
+.stats-row {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 16px 20px;
+  background: linear-gradient(90deg, var(--jet) 0%, var(--smoke) 50%, var(--jet) 100%);
+  flex-wrap: wrap;
+}
+.stat-box {
+  text-align: center;
+}
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 1.8rem;
+  line-height: 1;
+}
+.stat-num.green { color: var(--green-bright); }
+.stat-num.gold { color: var(--gold); }
+.stat-num.red { color: var(--blood-bright); }
+.stat-num.purple { color: var(--vpn-glow); }
+.stat-label {
+  font-family: 'Oswald', sans-serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #888;
+  margin-top: 2px;
+}
+
+/* ====== TOGGLE ====== */
+.mode-toggle {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  padding: 16px 20px 10px;
+}
+.mode-btn {
+  padding: 10px 24px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: 1px solid var(--mink);
+  background: var(--smoke);
+  color: #888;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.mode-btn:first-child { border-radius: 4px 0 0 4px; }
+.mode-btn:last-child { border-radius: 0 4px 4px 0; }
+.mode-btn.active {
+  background: var(--gold);
+  color: var(--jet);
+  border-color: var(--gold);
+}
+
+/* ====== MAP CONTAINER ====== */
+.map-wrap {
+  position: relative;
+  max-width: 1100px;
+  margin: 10px auto 0;
+  padding: 0 10px;
+}
+.map-svg-container {
+  position: relative;
+  width: 100%;
+}
+.map-svg-container svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+/* State base styles */
+.state-path {
+  stroke: var(--jet);
+  stroke-width: 0.8;
+  cursor: pointer;
+  transition: fill 0.2s, filter 0.2s, stroke 0.2s;
+}
+.state-path:hover {
+  filter: brightness(1.4);
+  stroke: var(--gold);
+  stroke-width: 1.5;
+}
+.state-path.approved { fill: var(--green-money); }
+.state-path.retail-only { fill: #5C4D1E; }
+.state-path.blocked { fill: var(--blood); }
+.state-path.vpn-active { fill: var(--vpn-purple); }
+
+/* State labels */
+.state-label {
+  font-family: 'Oswald', sans-serif;
+  font-size: 7px;
+  fill: #fff;
+  text-anchor: middle;
+  pointer-events: none;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  paint-order: stroke;
+  stroke: rgba(0,0,0,0.5);
+  stroke-width: 2px;
+}
+
+/* ====== PANEL (state detail) ====== */
+.panel-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  z-index: 100;
+  backdrop-filter: blur(4px);
+}
+.panel-overlay.open { display: flex; justify-content: center; align-items: center; }
+
+.panel {
+  background: var(--smoke);
+  border: 1px solid var(--mink);
+  border-radius: 8px;
+  width: 90%;
+  max-width: 520px;
+  max-height: 85vh;
+  overflow-y: auto;
+  position: relative;
+  animation: panelIn 0.3s ease;
+}
+@keyframes panelIn {
+  from { opacity: 0; transform: translateY(20px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.panel-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 22px;
+  cursor: pointer;
+  z-index: 2;
+}
+.panel-close:hover { color: var(--gold); }
+
+.panel-header {
+  padding: 24px 24px 16px;
+  border-bottom: 1px solid var(--mink);
+}
+.panel-state-name {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 1.8rem;
+  color: var(--gold);
+}
+.panel-status {
+  display: inline-block;
+  padding: 3px 12px;
+  border-radius: 3px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-top: 8px;
+}
+.panel-status.approved { background: var(--green-money); color: #fff; }
+.panel-status.retail-only { background: #5C4D1E; color: var(--gold); }
+.panel-status.blocked { background: var(--blood); color: #fff; }
+
+.panel-body { padding: 20px 24px 24px; }
+
+.panel-section-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  margin-bottom: 10px;
+  margin-top: 16px;
+}
+.panel-section-title:first-child { margin-top: 0; }
+
+.book-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.book-chip {
+  padding: 5px 12px;
+  background: var(--steel);
+  border: 1px solid var(--mink);
+  border-radius: 4px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: var(--ice);
+  transition: all 0.2s;
+}
+.book-chip:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: rgba(212,175,55,0.1);
+}
+
+.panel-note {
+  font-size: 13px;
+  color: #999;
+  line-height: 1.5;
+  margin-top: 8px;
+}
+
+/* VPN SECTION in panel */
+.vpn-banner {
+  margin-top: 18px;
+  padding: 16px;
+  background: linear-gradient(135deg, rgba(106,13,173,0.2), rgba(155,48,255,0.1));
+  border: 1px solid var(--vpn-purple);
+  border-radius: 6px;
+}
+.vpn-banner-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--vpn-glow);
+  margin-bottom: 6px;
+}
+.vpn-banner-text {
+  font-size: 13px;
+  color: #ccc;
+  line-height: 1.5;
+}
+.vpn-banner-text strong { color: var(--gold); }
+
+/* ====== VPN VALUE SECTION ====== */
+.vpn-section {
+  max-width: 1100px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+.vpn-card {
+  background: linear-gradient(135deg, var(--smoke) 0%, rgba(106,13,173,0.15) 100%);
+  border: 1px solid var(--vpn-purple);
+  border-radius: 8px;
+  padding: 30px;
+  position: relative;
+  overflow: hidden;
+}
+.vpn-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(155,48,255,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.vpn-card-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.vpn-icon {
+  width: 48px;
+  height: 48px;
+  background: var(--vpn-purple);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+.vpn-card-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 1.6rem;
+  color: var(--vpn-glow);
+}
+.vpn-card-sub {
+  font-family: 'Oswald', sans-serif;
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: #888;
+  text-transform: uppercase;
+}
+
+.vpn-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+.vpn-benefit {
+  padding: 16px;
+  background: rgba(0,0,0,0.3);
+  border-radius: 6px;
+  border-left: 3px solid var(--vpn-glow);
+}
+.vpn-benefit-num {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 1.5rem;
+  color: var(--gold);
+}
+.vpn-benefit-label {
+  font-family: 'Oswald', sans-serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #aaa;
+  margin-top: 2px;
+}
+.vpn-benefit-desc {
+  font-size: 12px;
+  color: #999;
+  margin-top: 6px;
+  line-height: 1.4;
+}
+
+/* Quote banner */
+.quote-banner {
+  max-width: 1100px;
+  margin: 20px auto 30px;
+  padding: 0 20px;
+}
+.quote-inner {
+  text-align: center;
+  padding: 24px;
+  border-top: 1px solid var(--gold-dim);
+  border-bottom: 1px solid var(--gold-dim);
+}
+.quote-text {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+  color: var(--gold);
+  line-height: 1.3;
+}
+.quote-attr {
+  font-family: 'Oswald', sans-serif;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  margin-top: 8px;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 11px;
+  color: #555;
+  font-family: 'Oswald', sans-serif;
+  letter-spacing: 2px;
+}
+.footer a { color: var(--gold-dim); text-decoration: none; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--jet); }
+::-webkit-scrollbar-thumb { background: var(--mink); border-radius: 3px; }
+
+/* Pulse animation for VPN toggle */
+@keyframes vpnPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(155,48,255,0.4); }
+  50% { box-shadow: 0 0 0 6px rgba(155,48,255,0); }
+}
+.mode-btn.vpn-pulse { animation: vpnPulse 2s infinite; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">Sports Bet Arbitrage LLC</div>
+  <h1>EVERYBODY EATS<span>The SBA Territory Map — Know Your Market, Get Set Up Faster</span></h1>
+  <div class="hero-quote">"I ain't got it all figured out... but everybody gon' eat." — Paid in Full</div>
+</div>
+
+<!-- LEGEND -->
+<div class="legend-bar">
+  <div class="legend-item"><div class="legend-dot approved"></div>Online Betting Live</div>
+  <div class="legend-item"><div class="legend-dot retail-only"></div>Retail / Tribal Only</div>
+  <div class="legend-item"><div class="legend-dot blocked"></div>Not Legal</div>
+  <div class="legend-item"><div class="legend-dot vpn"></div>VPN Unlocked</div>
+</div>
+
+<!-- STATS -->
+<div class="stats-row">
+  <div class="stat-box"><div class="stat-num green">30</div><div class="stat-label">States Online</div></div>
+  <div class="stat-box"><div class="stat-num gold">9</div><div class="stat-label">Retail / Tribal</div></div>
+  <div class="stat-box"><div class="stat-num red">12</div><div class="stat-label">Not Legal</div></div>
+  <div class="stat-box"><div class="stat-num purple">39+</div><div class="stat-label">Books Supported</div></div>
+</div>
+
+<!-- TOGGLE -->
+<div class="mode-toggle">
+  <button class="mode-btn active" onclick="setMode('normal')">STANDARD VIEW</button>
+  <button class="mode-btn vpn-pulse" onclick="setMode('vpn')">🔒 VPN MODE</button>
+</div>
+
+<!-- MAP -->
+<div class="map-wrap">
+  <div class="map-svg-container" id="mapContainer"></div>
+</div>
+
+<!-- VPN VALUE SECTION -->
+<div class="vpn-section">
+  <div class="vpn-card">
+    <div class="vpn-card-header">
+      <div class="vpn-icon">🔒</div>
+      <div>
+        <div class="vpn-card-title">The VPN Add-On — $1,000 / Cycle</div>
+        <div class="vpn-card-sub">Turn 30 States Into 50 — Everybody Eats</div>
+      </div>
+    </div>
+    <p style="color:#ccc;font-size:14px;line-height:1.6;margin-bottom:16px;">
+      Without VPN, you're limited to the books approved in YOUR state. With SBA's VPN package, you unlock access to sportsbooks across <strong style="color:var(--gold)">every legal market in the country</strong> — more books means more arbitrage opportunities, wider line discrepancies, and bigger profit margins. This is the edge.
+    </p>
+    <div class="vpn-grid">
+      <div class="vpn-benefit">
+        <div class="vpn-benefit-num">3x</div>
+        <div class="vpn-benefit-label">More Arb Opportunities</div>
+        <div class="vpn-benefit-desc">Access books from 30+ states instead of just yours. More lines = more mismatches = more money.</div>
+      </div>
+      <div class="vpn-benefit">
+        <div class="vpn-benefit-num">39+</div>
+        <div class="vpn-benefit-label">Sportsbooks Unlocked</div>
+        <div class="vpn-benefit-desc">DraftKings, FanDuel, BetMGM, Caesars, bet365, Fanatics, Hard Rock, and dozens more.</div>
+      </div>
+      <div class="vpn-benefit">
+        <div class="vpn-benefit-num">24/7</div>
+        <div class="vpn-benefit-label">State-Hop Instantly</div>
+        <div class="vpn-benefit-desc">Switch between state-specific books in seconds. No travel, no waiting — pure digital access.</div>
+      </div>
+      <div class="vpn-benefit">
+        <div class="vpn-benefit-num">$0</div>
+        <div class="vpn-benefit-label">Zero Blocked States</div>
+        <div class="vpn-benefit-desc">Even in restricted states, connect to approved markets and start setting up accounts immediately.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- QUOTE BANNER -->
+<div class="quote-banner">
+  <div class="quote-inner">
+    <div class="quote-text">"We all gon' eat. That's the only way it works."</div>
+    <div class="quote-attr">The SBA Philosophy — Inspired by Paid in Full</div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <a href="https://sportsbetarbitrage.com">sportsbetarbitrage.com</a> &nbsp;·&nbsp; SBA GENIUS V3 &nbsp;·&nbsp; © 2026 Sports Bet Arbitrage LLC
+</div>
+
+<!-- STATE DETAIL PANEL -->
+<div class="panel-overlay" id="panelOverlay" onclick="closePanel(event)">
+  <div class="panel" onclick="event.stopPropagation()">
+    <button class="panel-close" onclick="document.getElementById('panelOverlay').classList.remove('open')">✕</button>
+    <div class="panel-header">
+      <div class="panel-state-name" id="panelStateName">—</div>
+      <div class="panel-status" id="panelStatus">—</div>
+    </div>
+    <div class="panel-body" id="panelBody"></div>
+  </div>
+</div>
+
+<script>
+// ===== STATE DATA =====
+const stateData = {
+  // ONLINE LEGAL (30 states + DC)
+  'AZ': { status: 'approved', name: 'Arizona', books: ['DraftKings','FanDuel','BetMGM','Caesars','bet365','Fanatics','BetRivers','SuperBook'] },
+  'CO': { status: 'approved', name: 'Colorado', books: ['DraftKings','FanDuel','BetMGM','Caesars','bet365','Fanatics','BetRivers','MaximBet','SuperBook'] },
+  'CT': { status: 'approved', name: 'Connecticut', books: ['DraftKings','FanDuel'] },
+  'DC': { status: 'approved', name: 'Washington DC', books: ['DraftKings','FanDuel','BetMGM','Caesars','Fanatics'] },
+  'DE': { status: 'approved', name: 'Delaware', books: ['DraftKings','FanDuel','BetMGM','Caesars'] },
+  'FL': { status: 'approved', name: 'Florida', books: ['Hard Rock Bet (Seminole Exclusive)'] },
+  'IL': { status: 'approved', name: 'Illinois', books: ['DraftKings','FanDuel','BetMGM','Caesars','bet365','Fanatics','BetRivers','PointsBet'] },
+  'IN': { status: 'approved', name: 'Indiana', books: ['DraftKings','FanDuel','BetMGM','Caesars','bet365','Fanatics','BetRivers','Hard Rock'] },
+  'IA': { status: 'approved', name: 'Iowa', books: ['DraftKings','FanDuel','BetMGM','Caesars','bet365','Fanatics','BetRivers'] },
+  'KS': { status: 'approved', name: 'Kansas', books: ['DraftKings','FanDuel','BetMGM','Caesars','Fanatics','BetRivers'] },
+  'KY': { status: 'approved', name: 'Kentucky', books: ['DraftKings','FanDuel','BetMGM','Caesars','bet365','Fanatics'] },
+  'LA': { status: 'approved', name: 'Louisiana', books: ['DraftKings','FanDuel','BetMGM','Caesars','bet365','Fanatics','BetRivers'] },
+  'ME': { status: 'approved', name: 'Maine', books: ['DraftKings','FanDuel','Caesars'] },
+  'MD': { status: 'approved', name: 'Maryland', books: ['DraftKings','FanDuel','BetMGM','Caesars','bet365','Fanatics','BetRivers'] },
+  'MA': { status: 'approved', name: 'Massachusetts', books: ['DraftKings','FanDuel','BetMGM','Caesars','Fanatics','BetRivers'] },
+  'MI': { status: 'approved', name: 'Michigan', books: ['DraftKings','FanDuel','BetMGM','Caesars','bet365','Fanatics','BetRivers','PointsBet'] },
+  'MO': { status: 'approved', name: 'Missouri', books: ['DraftKings','FanDuel','BetMGM','Caesars','Fanatics','BetRivers'] },
+  'NH': { status: 'approved', name: 'New Hampshire', books: ['DraftKings'] },
+  'NJ': { status: 'approved', name: 'New Jersey', books: ['DraftKings','FanDuel','BetMGM','Caesars','bet365','Fanatics','BetRivers','PointsBet','Unibet','Hard Rock'] },
+  'NY': { status: 'approved', name: 'New York', books: ['DraftKings','FanDuel','BetMGM','Caesars','bet365','Fanatics','BetRivers','Hard Rock'] },
+  'NC': { status: 'approved', name: 'North Carolina', books: ['DraftKings','FanDuel','BetMGM','Caesars','bet365','Fanatics','BetRivers','Hard Rock'] },
+  'OH': { status: 'approved', name: 'Ohio', books: ['DraftKings','FanDuel','BetMGM','Caesars','bet365','Fanatics','BetRivers','Hard Rock'] },
+  'OR': { status: 'approved', name: 'Oregon', books: ['DraftKings (Scoreboard)','BetMGM'] },
+  'PA': { status: 'approved', name: 'Pennsylvania', books: ['DraftKings','FanDuel','BetMGM','Caesars','bet365','Fanatics','BetRivers','Hard Rock','Unibet'] },
+  'RI': { status: 'approved', name: 'Rhode Island', books: ['Bally Bet','FanDuel'] },
+  'TN': { status: 'approved', name: 'Tennessee', books: ['DraftKings','FanDuel','BetMGM','Caesars','bet365','Fanatics','BetRivers','Hard Rock'] },
+  'VT': { status: 'approved', name: 'Vermont', books: ['DraftKings','FanDuel'] },
+  'VA': { status: 'approved', name: 'Virginia', books: ['DraftKings','FanDuel','BetMGM','Caesars','bet365','Fanatics','BetRivers','Hard Rock'] },
+  'WV': { status: 'approved', name: 'West Virginia', books: ['DraftKings','FanDuel','BetMGM','Caesars','Fanatics','BetRivers','Hard Rock'] },
+  'WY': { status: 'approved', name: 'Wyoming', books: ['DraftKings','FanDuel','BetMGM'] },
+  'NV': { status: 'approved', name: 'Nevada', books: ['BetMGM','Caesars','SuperBook','Circa','Westgate','STN','South Point'] },
+
+  // RETAIL / TRIBAL ONLY (9)
+  'AR': { status: 'retail-only', name: 'Arkansas', books: ['Oaklawn (Retail)','Southland (Retail)','Saracen (Retail)'], note: 'In-person only at licensed casinos. Limited online via casino apps on-premise.' },
+  'MS': { status: 'retail-only', name: 'Mississippi', books: ['BetMGM (On-Premise)','Caesars (On-Premise)','FanDuel (On-Premise)'], note: 'Mobile betting only within casino grounds. No statewide online.' },
+  'MT': { status: 'retail-only', name: 'Montana', books: ['Sports Bet Montana (Lottery)'], note: 'Lottery-run terminals and app only at authorized locations.' },
+  'NM': { status: 'retail-only', name: 'New Mexico', books: ['Tribal Casinos Only'], note: 'Tribal gaming compacts. No state-regulated online betting.' },
+  'ND': { status: 'retail-only', name: 'North Dakota', books: ['Tribal Casinos Only'], note: 'Tribal Class III compact. Limited venues.' },
+  'NE': { status: 'retail-only', name: 'Nebraska', books: ['Retail Locations'], note: 'Retail launched; online expansion under discussion.' },
+  'SD': { status: 'retail-only', name: 'South Dakota', books: ['Deadwood Casinos','Tribal Casinos'], note: 'In-person at Deadwood and tribal locations only.' },
+  'WA': { status: 'retail-only', name: 'Washington', books: ['Tribal Casinos Only'], note: 'Tribal exclusivity. On-premise mobile at some locations.' },
+  'WI': { status: 'retail-only', name: 'Wisconsin', books: ['Tribal Casinos Only'], note: 'Tribal compacts. Online legalization bill pending for 2026.' },
+
+  // NOT LEGAL (11)
+  'AL': { status: 'blocked', name: 'Alabama', books: [], note: 'No sports betting. Constitutional amendment needed.' },
+  'AK': { status: 'blocked', name: 'Alaska', books: [], note: 'HB 145 introduced 2025 but no movement yet.' },
+  'CA': { status: 'blocked', name: 'California', books: [], note: 'Props 26 & 27 rejected in 2022. Earliest ballot: 2026–2028.' },
+  'GA': { status: 'blocked', name: 'Georgia', books: [], note: 'Multiple failed bills. Strong candidate for future legalization.' },
+  'HI': { status: 'blocked', name: 'Hawaii', books: [], note: 'HB 1308 nearly passed in 2025. Top candidate for 2026.' },
+  'ID': { status: 'blocked', name: 'Idaho', books: [], note: 'No legislation introduced. Considered unlikely this decade.' },
+  'MN': { status: 'blocked', name: 'Minnesota', books: [], note: 'Tribal vs racetrack disputes blocking progress. Ongoing.' },
+  'OK': { status: 'blocked', name: 'Oklahoma', books: [], note: 'Failed in 2024. Tribal compact complexities.' },
+  'SC': { status: 'blocked', name: 'South Carolina', books: [], note: 'No legislation. Conservative legislature.' },
+  'TX': { status: 'blocked', name: 'Texas', books: [], note: 'House support exists but Senate blocked. Huge potential market.' },
+  'UT': { status: 'blocked', name: 'Utah', books: [], note: 'Constitutional ban on all gambling. Expected last holdout.' }
+};
+
+let currentMode = 'normal';
+
+function setMode(mode) {
+  currentMode = mode;
+  document.querySelectorAll('.mode-btn').forEach((b,i) => {
+    b.classList.toggle('active', (mode === 'normal' && i === 0) || (mode === 'vpn' && i === 1));
+  });
+  // Re-color states
+  Object.keys(stateData).forEach(abbr => {
+    const el = document.getElementById('state-' + abbr);
+    if (!el) return;
+    el.className = 'state-path';
+    if (mode === 'vpn') {
+      // In VPN mode, everything lights up
+      el.classList.add('vpn-active');
+    } else {
+      el.classList.add(stateData[abbr].status);
+    }
+  });
+}
+
+function openPanel(abbr) {
+  const d = stateData[abbr];
+  if (!d) return;
+  document.getElementById('panelStateName').textContent = d.name;
+  const statusEl = document.getElementById('panelStatus');
+  statusEl.className = 'panel-status ' + d.status;
+  const statusLabels = { 'approved': 'ONLINE LEGAL', 'retail-only': 'RETAIL / TRIBAL ONLY', 'blocked': 'NOT LEGAL' };
+  statusEl.textContent = currentMode === 'vpn' && d.status !== 'approved' ? '🔒 VPN UNLOCKED' : statusLabels[d.status];
+  if (currentMode === 'vpn' && d.status !== 'approved') {
+    statusEl.className = 'panel-status';
+    statusEl.style.background = 'var(--vpn-purple)';
+    statusEl.style.color = '#fff';
+  } else {
+    statusEl.style.background = '';
+    statusEl.style.color = '';
+  }
+
+  let html = '';
+  if (d.books.length > 0) {
+    html += `<div class="panel-section-title">Available Sportsbooks</div><div class="book-grid">`;
+    d.books.forEach(b => html += `<div class="book-chip">${b}</div>`);
+    html += `</div>`;
+  }
+  if (d.note) {
+    html += `<div class="panel-section-title">Intel</div><div class="panel-note">${d.note}</div>`;
+  }
+
+  if (d.status === 'blocked') {
+    if (currentMode === 'vpn') {
+      html += `<div class="vpn-banner">
+        <div class="vpn-banner-title">🔒 VPN Changes The Game</div>
+        <div class="vpn-banner-text">With SBA's VPN add-on, you're not stuck waiting for ${d.name} to legalize. Connect to <strong>any approved state</strong> and access 39+ sportsbooks instantly. Set up accounts, find arbs, and start eating — no borders, no limits.</div>
+      </div>`;
+    } else {
+      html += `<div class="vpn-banner">
+        <div class="vpn-banner-title">💡 Don't Wait — Get The VPN</div>
+        <div class="vpn-banner-text">Members in ${d.name} use SBA's <strong>$1,000 VPN add-on</strong> to access all 30+ legal online markets. Why sit on the sidelines when everybody else is eating?</div>
+      </div>`;
+    }
+  } else if (d.status === 'retail-only') {
+    html += `<div class="vpn-banner">
+      <div class="vpn-banner-title">⚡ Limited Market — VPN Expands Your Reach</div>
+      <div class="vpn-banner-text">${d.name} only offers retail/tribal betting. SBA's VPN gives you access to the <strong>full online ecosystem</strong> — 39+ sportsbooks with statewide mobile access across approved states. More books = more arbs = more profit.</div>
+    </div>`;
+  } else {
+    // Approved state — show what they already have
+    html += `<div class="panel-section-title" style="margin-top:18px;">SBA Genius Tip</div>
+    <div class="panel-note">You have <strong style="color:var(--green-bright)">${d.books.length} books</strong> in ${d.name}. Sign up for ALL of them — the more accounts you have, the more line discrepancies SBA Genius can find for you. Every book is an edge.</div>`;
+  }
+
+  document.getElementById('panelBody').innerHTML = html;
+  document.getElementById('panelOverlay').classList.add('open');
+}
+
+function closePanel(e) {
+  if (e.target === document.getElementById('panelOverlay')) {
+    document.getElementById('panelOverlay').classList.remove('open');
+  }
+}
+
+// ===== BUILD SVG MAP =====
+// Simplified US state paths
+const statePaths = {
+'AL': 'M628,396 L628,345 L666,345 L672,399 L668,420 L655,420 L650,410 L628,396Z',
+'AK': 'M120,468 L158,468 L175,455 L185,462 L175,478 L160,488 L130,490 L115,482 L120,468Z',
+'AZ': 'M175,345 L220,345 L230,395 L225,420 L185,420 L170,400 L175,345Z',
+'AR': 'M565,370 L615,370 L620,340 L565,340 L560,355 L565,370Z',
+'CA': 'M100,240 L130,230 L145,270 L150,330 L135,380 L105,370 L90,310 L100,240Z',
+'CO': 'M270,270 L340,270 L340,320 L270,320 L270,270Z',
+'CT': 'M810,210 L835,205 L838,220 L815,225 L810,210Z',
+'DE': 'M775,265 L785,258 L790,280 L780,285 L775,265Z',
+'FL': 'M660,420 L710,410 L740,435 L725,480 L700,500 L680,480 L660,445 L655,420 L660,420Z',
+'DC': 'M762,280 L768,276 L770,282 L764,284 L762,280Z',
+'GA': 'M670,345 L710,345 L715,400 L710,410 L660,420 L655,420 L668,400 L672,365 L670,345Z',
+'HI': 'M240,470 L260,462 L275,468 L278,480 L265,488 L245,485 L240,470Z',
+'ID': 'M195,130 L220,120 L230,170 L225,220 L200,230 L190,195 L195,130Z',
+'IL': 'M590,230 L620,225 L625,300 L615,320 L600,330 L585,310 L590,230Z',
+'IN': 'M625,235 L655,235 L655,310 L625,315 L620,290 L625,235Z',
+'IA': 'M520,220 L585,215 L590,260 L525,265 L520,220Z',
+'KS': 'M400,300 L490,300 L490,340 L400,340 L400,300Z',
+'KY': 'M620,295 L700,280 L710,300 L660,320 L625,320 L620,295Z',
+'LA': 'M560,410 L600,395 L610,425 L595,450 L570,445 L555,430 L560,410Z',
+'ME': 'M830,120 L850,110 L860,145 L845,175 L825,170 L820,140 L830,120Z',
+'MD': 'M725,260 L775,250 L780,275 L760,285 L730,280 L725,260Z',
+'MA': 'M820,195 L855,188 L858,200 L835,205 L820,200 L820,195Z',
+'MI': 'M610,150 L660,140 L670,185 L660,220 L630,230 L610,200 L620,170 L610,150Z',
+'MN': 'M490,110 L540,105 L545,195 L530,210 L490,210 L485,150 L490,110Z',
+'MS': 'M600,345 L628,345 L628,396 L625,420 L610,425 L600,395 L600,345Z',
+'MO': 'M520,280 L590,270 L600,330 L565,340 L530,340 L520,310 L520,280Z',
+'MT': 'M225,100 L330,95 L335,155 L230,165 L225,100Z',
+'NE': 'M365,240 L460,235 L465,275 L400,280 L365,275 L365,240Z',
+'NV': 'M145,220 L185,215 L185,310 L155,340 L135,310 L145,220Z',
+'NH': 'M825,150 L840,145 L845,180 L830,185 L825,170 L825,150Z',
+'NJ': 'M785,235 L798,230 L800,265 L790,275 L780,260 L785,235Z',
+'NM': 'M225,340 L295,335 L300,405 L230,410 L225,340Z',
+'NY': 'M730,165 L810,150 L820,195 L810,215 L780,230 L740,220 L730,195 L730,165Z',
+'NC': 'M660,320 L760,300 L780,320 L740,340 L670,345 L660,320Z',
+'ND': 'M370,105 L450,100 L455,155 L375,160 L370,105Z',
+'OH': 'M660,230 L710,225 L715,275 L700,285 L660,285 L655,245 L660,230Z',
+'OK': 'M390,345 L490,340 L500,365 L490,380 L400,385 L385,370 L390,345Z',
+'OR': 'M105,130 L180,120 L185,185 L170,200 L110,200 L90,175 L105,130Z',
+'PA': 'M710,220 L780,210 L785,245 L720,255 L710,220Z',
+'RI': 'M840,210 L850,207 L852,218 L842,220 L840,210Z',
+'SC': 'M700,330 L745,325 L750,355 L720,370 L700,360 L700,330Z',
+'SD': 'M370,165 L455,160 L460,220 L375,225 L370,165Z',
+'TN': 'M600,320 L700,305 L710,325 L700,340 L610,345 L600,330 L600,320Z',
+'TX': 'M340,370 L420,365 L450,400 L470,450 L440,490 L400,490 L360,460 L330,430 L320,400 L340,370Z',
+'UT': 'M215,225 L270,220 L270,300 L225,305 L215,270 L215,225Z',
+'VT': 'M810,140 L825,137 L828,170 L815,175 L810,155 L810,140Z',
+'VA': 'M695,280 L770,260 L780,290 L760,310 L700,310 L695,280Z',
+'WA': 'M110,75 L195,70 L200,130 L185,140 L115,140 L105,115 L110,75Z',
+'WV': 'M700,265 L725,258 L730,290 L715,305 L700,295 L700,265Z',
+'WI': 'M545,130 L600,125 L610,195 L600,220 L555,225 L545,195 L545,130Z',
+'WY': 'M255,170 L335,165 L340,225 L260,230 L255,170Z'
+};
+
+const stateLabels = {
+'AL':[648,375],'AK':[148,478],'AZ':[200,380],'AR':[588,355],'CA':[118,310],
+'CO':[305,295],'CT':[825,215],'DE':[783,272],'FL':[695,455],'DC':[766,280],
+'GA':[690,375],'HI':[260,478],'ID':[210,175],'IL':[605,275],'IN':[640,275],
+'IA':[552,240],'KS':[445,320],'KY':[660,300],'LA':[580,425],'ME':[840,145],
+'MD':[755,268],'MA':[838,197],'MI':[645,185],'MN':[515,155],'MS':[614,375],
+'MO':[555,305],'MT':[280,125],'NE':[415,258],'NV':[162,270],'NH':[833,165],
+'NJ':[792,252],'NM':[260,372],'NY':[760,185],'NC':[720,325],'ND':[415,130],
+'OH':[685,255],'OK':[445,365],'OR':[140,160],'PA':[745,235],'RI':[847,214],
+'SC':[725,348],'SD':[415,192],'TN':[650,328],'TX':[400,430],'UT':[243,265],
+'VT':[818,155],'VA':[735,290],'WA':[150,105],'WV':[712,280],'WI':[572,170],
+'WY':[298,198]
+};
+
+// Build SVG
+let svg = `<svg viewBox="70 60 820 450" xmlns="http://www.w3.org/2000/svg">`;
+// Draw state shapes
+Object.keys(statePaths).forEach(abbr => {
+  const d = stateData[abbr];
+  const cls = d ? d.status : 'blocked';
+  svg += `<path id="state-${abbr}" class="state-path ${cls}" d="${statePaths[abbr]}" onclick="openPanel('${abbr}')" />`;
+});
+// Draw labels
+Object.keys(stateLabels).forEach(abbr => {
+  const [x, y] = stateLabels[abbr];
+  svg += `<text class="state-label" x="${x}" y="${y}">${abbr}</text>`;
+});
+svg += `</svg>`;
+document.getElementById('mapContainer').innerHTML = svg;
+</script>
+
+</body>
+</html>
